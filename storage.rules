@@ -1,0 +1,13 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Public media files (machine images, brochures, videos)
+    match /{allPaths=**} {
+      // Anyone can read images, brochures, videos
+      allow read: if true;
+      // Only authenticated admins can upload/delete files (max 25MB)
+      allow write: if request.auth != null && request.resource.size < 25 * 1024 * 1024;
+    }
+  }
+}

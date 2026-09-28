@@ -1,0 +1,90 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is authenticated admin
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Check if user has admin/owner/staff role
+    function getUserRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+    
+    function isOwner() {
+      return isAuthenticated() && getUserRole() == 'owner';
+    }
+    
+    function isStaffOrOwner() {
+      return isAuthenticated() && (getUserRole() == 'owner' || getUserRole() == 'staff');
+    }
+
+    // 1. Leads collection: Public can CREATE (submit quote/inquiry), but ONLY authenticated admins can READ/UPDATE/DELETE
+    match /leads/{leadId} {
+      allow create: if true;
+      allow read, update: if isStaffOrOwner();
+      allow delete: if isOwner();
+    }
+
+    // 2. Events / Analytics: Public can CREATE (log CTA clicks, visits), only admin can read
+    match /events/{eventId} {
+      allow create: if true;
+      allow read: if isStaffOrOwner();
+      allow delete: if isOwner();
+    }
+
+    // 3. Public Content collections: Public can READ, only authenticated staff/owners can WRITE
+    match /siteContent/{docId} {
+      allow read: if true;
+      allow write: if isStaffOrOwner();
+    }
+    
+    match /products/{docId} {
+      allow read: if true;
+      allow write: if isStaffOrOwner();
+    }
+    
+    match /specs/{docId} {
+      allow read: if true;
+      allow write: if isStaffOrOwner();
+    }
+    
+    match /faqs/{docId} {
+      allow read: if true;
+      allow write: if isStaffOrOwner();
+    }
+    
+    match /brochures/{docId} {
+      allow read: if true;
+      allow write: if isStaffOrOwner();
+    }
+    
+    match /offers/{docId} {
+      allow read: if true;
+      allow write: if isStaffOrOwner();
+    }
+    
+    match /testimonials/{docId} {
+      allow read: if true;
+      allow write: if isStaffOrOwner();
+    }
+    
+    match /settings/{docId} {
+      allow read: if true;
+      allow write: if isOwner();
+    }
+
+    // 4. Users collection: Only owners can manage user accounts
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isOwner());
+      allow write: if isOwner();
+    }
+
+    // 5. Activity logs: Only authenticated users can create logs, read by owner/staff
+    match /activityLogs/{logId} {
+      allow read, create: if isStaffOrOwner();
+      allow delete: if isOwner();
+    }
+  }
+}

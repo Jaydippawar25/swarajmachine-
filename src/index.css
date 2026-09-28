@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Authentic Devanagari Hindi font rendering with distinct Badi 'ू' matra */
+  .font-devanagari,
+  :lang(hi),
+  [lang="hi"],
+  :lang(mr),
+  [lang="mr"] {
+    font-family: 'Noto Sans Devanagari', 'Poppins', system-ui, sans-serif;
+  }
+
+  /* Prevent matra, shirorekha, and conjunct clipping in Devanagari text */
+  .font-devanagari h1,
+  .font-devanagari h2,
+  .font-devanagari h3,
+  .font-devanagari h4,
+  .font-devanagari h5,
+  .font-devanagari h6,
+  [lang="hi"] h1,
+  [lang="hi"] h2,
+  [lang="hi"] h3,
+  [lang="hi"] h4,
+  [lang="hi"] h5,
+  [lang="hi"] h6,
+  [lang="mr"] h1,
+  [lang="mr"] h2,
+  [lang="mr"] h3,
+  [lang="mr"] h4,
+  [lang="mr"] h5,
+  [lang="mr"] h6 {
+    letter-spacing: normal !important;
+    line-height: 1.35 !important;
+  }
+
+  .font-devanagari p,
+  .font-devanagari span,
+  .font-devanagari button,
+  .font-devanagari label,
+  .font-devanagari a,
+  [lang="hi"] p,
+  [lang="hi"] span,
+  [lang="hi"] button,
+  [lang="hi"] label,
+  [lang="hi"] a,
+  [lang="mr"] p,
+  [lang="mr"] span,
+  [lang="mr"] button,
+  [lang="mr"] label,
+  [lang="mr"] a {
+    letter-spacing: normal !important;
+  }
+}
+
+/* Custom Glassmorphism & Industrial Glows */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.glass-panel-dark {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(51, 65, 85, 0.6);
+}
+
+.gradient-machinery {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #0f172a 100%);
+}
+
+.gradient-gold {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.shadow-glow-blue {
+  box-shadow: 0 0 25px rgba(2, 132, 199, 0.25);
+}
+
+.shadow-glow-amber {
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
+}
+
+/* Pulse badge keyframe */
+@keyframes softPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+.animate-soft-pulse {
+  animation: softPulse 2.5s ease-in-out infinite;
+}
+
+/* Offer Banner Shimmer Sweep */
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  40%, 100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+.animate-shimmer-sweep {
+  animation: shimmerSweep 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Card floating & breathing animation */
+@keyframes cardFloat1 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes cardFloat2 {
+  0%, 100% {
+    transform: translateY(-4px);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+}
+
+.animate-card-float-1 {
+  animation: cardFloat1 4s ease-in-out infinite;
+}
+
+.animate-card-float-2 {
+  animation: cardFloat2 4.5s ease-in-out infinite 0.8s;
+}
+
+.animate-card-float-1:hover,
+.animate-card-float-2:hover {
+  animation-play-state: paused;
+}
+
+
+.animate-offer-glow {
+  animation: offerGlow 2.5s ease-in-out infinite;
+}
+

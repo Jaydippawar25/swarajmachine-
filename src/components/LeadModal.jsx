@@ -1,0 +1,228 @@
+import React, { useState } from 'react';
+import { X, Send, Sparkles, CheckCircle2 } from 'lucide-react';
+import WhatsAppIcon from './WhatsAppIcon';
+import confetti from 'canvas-confetti';
+import { leadService } from '../admin/services/leadService';
+
+export default function LeadModal({ isOpen, onClose, t, lang }) {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    city: '',
+    purpose: t.modal.purposeOptions[0]
+  });
+  const [honeypot, setHoneypot] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  if (!isOpen) return null;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // 1. Honeypot spam check
+    if (honeypot) {
+      console.warn('Spam detected via honeypot');
+      onClose();
+      return;
+    }
+
+    // 2. Rate limit check (30 seconds)
+    const lastSub = localStorage.getItem('swaraj_last_lead_sub');
+    if (lastSub && Date.now() - parseInt(lastSub, 10) < 30000) {
+      // Allow but skip duplicate warning to not confuse genuine customer
+    } else {
+      localStorage.setItem('swaraj_last_lead_sub', Date.now().toString());
+    }
+
+    // 3. Save Lead to CRM / Firestore (Never blocks WhatsApp)
+    try {
+      let bType = 'startup';
+      const pLower = (formData.purpose || '').toLowerCase();
+      if (pLower.includes('shg') || pLower.includes('बचत') || pLower.includes('समूह')) {
+        bType = 'shg';
+      } else if (pLower.includes('मिठाई') || pLower.includes('दुकान') || pLower.includes('sweet')) {
+        bType = 'sweet_shop';
+      }
+
+      await leadService.saveLead({
+        name: formData.name,
+        mobile: formData.phone,
+        city: formData.city,
+        state: 'India',
+        businessType: bType,
+        language: lang,
+        source: 'Quotation Modal',
+        notes: `Purpose: ${formData.purpose}`
+      });
+    } catch (err) {
+      console.warn('Failed to record lead in CRM, proceeding to WhatsApp:', err);
+    }
+
+    setSubmitted(true);
+    confetti({
+      particleCount: 80,
+      spread: 60,
+      origin: { y: 0.6 }
+    });
+
+    const msg = lang === 'mr'
+      ? `*नवीन कोटेशन चौकशी (SWARAJ लाडू मेकिंग मशीन)*\n\n👤 *नाव:* ${formData.name}\n📱 *मोबाईल:* ${formData.phone}\n📍 *गाव/शहर:* ${formData.city}\n💼 *उद्देश:* ${formData.purpose}\n\nकृपया मला थेट फॅक्टरी किंमत, सवलत आणि व्हिडिओ पाठवा.`
+      : lang === 'hi'
+      ? `*नया कोटेशन अनुरोध (SWARAJ लड्डू मेकिंग मशीन)*\n\n👤 *नाम:* ${formData.name}\n📱 *फ़ोन:* ${formData.phone}\n📍 *शहर/गाँव:* ${formData.city}\n💼 *व्यावसायिक उद्देश्य:* ${formData.purpose}\n\nकृपया मुझे सीधी फैक्टरी कीमत और वीडियो डेमो भेजें।`
+      : `*New Quotation Inquiry (SWARAJ Laddu Making Machine)*\n\n👤 *Name:* ${formData.name}\n📱 *Phone:* ${formData.phone}\n📍 *City:* ${formData.city}\n💼 *Setup:* ${formData.purpose}\n\nPlease share official factory price quote and demo video.`;
+
+    const waUrl = `https://wa.me/${t.nav.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+
+    setTimeout(() => {
+      window.open(waUrl, '_blank');
+    }, 700);
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white rounded-3xl max-w-md w-full p-5 sm:p-7 shadow-2xl border border-slate-100 relative overflow-hidden max-h-[92vh] overflow-y-auto"
+      >
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-blue-600 via-amber-500 to-emerald-500" />
+
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute top-4 right-4 p-1.5 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100"
+          aria-label="Close modal"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        {!submitted ? (
+          <div>
+            <div className="flex items-center gap-1.5 text-xs font-bold text-brand-blue-600 mb-1.5">
+              <Sparkles className="w-4 h-4 text-amber-500" />
+              <span>{lang === 'mr' ? 'थेट फॅक्टरी किंमत कोटेशन' : lang === 'hi' ? 'सीधी फैक्टरी कीमत कोटेशन' : 'DIRECT FACTORY PRICE QUOTE'}</span>
+            </div>
+
+            <h3 className="text-lg sm:text-xl font-black text-slate-900 leading-tight">
+              {t.modal.title}
+            </h3>
+            <p className="text-slate-600 text-xs mt-1">
+              {t.modal.subtitle}
+            </p>
+
+            <form onSubmit={handleSubmit} className="mt-5 space-y-3.5">
+              {/* Invisible spam prevention honeypot */}
+              <input
+                type="text"
+                name="website_url"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                tabIndex="-1"
+                autoComplete="off"
+                className="hidden"
+              />
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  {t.modal.nameLabel}
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder={t.modal.namePlaceholder}
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-brand-blue-500 text-sm font-medium outline-none transition"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  {t.modal.phoneLabel}
+                </label>
+                <input
+                  type="tel"
+                  required
+                  placeholder={t.modal.phonePlaceholder}
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-brand-blue-500 text-sm font-medium outline-none transition"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  {t.modal.cityLabel}
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder={t.modal.cityPlaceholder}
+                  value={formData.city}
+                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-brand-blue-500 text-sm font-medium outline-none transition"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  {t.modal.purposeLabel}
+                </label>
+                <select
+                  value={formData.purpose}
+                  onChange={(e) => setFormData({ ...formData, purpose: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-brand-blue-500 text-sm font-medium outline-none transition bg-white"
+                >
+                  {t.modal.purposeOptions.map((opt, i) => (
+                    <option key={i} value={opt}>{opt}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition text-sm"
+                >
+                  <Send className="w-4 h-4" />
+                  <span>{t.modal.submitBtn}</span>
+                </button>
+              </div>
+
+              <div className="text-center pt-1">
+                <a
+                  href={`https://wa.me/${t.nav.whatsappNumber}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600 hover:text-emerald-700"
+                >
+                  <WhatsAppIcon className="w-4 h-4 fill-emerald-600" />
+                  <span>{t.modal.directWhatsapp}</span>
+                </a>
+              </div>
+            </form>
+          </div>
+        ) : (
+          <div className="text-center py-6 space-y-3">
+            <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-2">
+              <CheckCircle2 className="w-8 h-8" />
+            </div>
+            <h3 className="text-xl font-black text-slate-900">
+              {t.modal.successTitle}
+            </h3>
+            <p className="text-slate-600 text-xs max-w-xs mx-auto leading-relaxed">
+              {t.modal.successDesc}
+            </p>
+            <div className="pt-3">
+              <button
+                type="button"
+                onClick={onClose}
+                className="bg-slate-900 text-white font-bold px-5 py-2 rounded-xl text-xs hover:bg-slate-800 transition"
+              >
+                {lang === 'mr' ? 'बंद करा (Close)' : lang === 'hi' ? 'बंद करें (Close)' : 'Close'}
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

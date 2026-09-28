@@ -1,0 +1,141 @@
+import React from 'react';
+import { XCircle, CheckCircle2, AlertTriangle, Sparkles, Scale, ArrowRight, ShieldCheck } from 'lucide-react';
+
+export default function Comparison({ t, lang, onOpenQuote }) {
+  const data = t.comparison;
+
+  return (
+    <section id="comparison" className="py-14 sm:py-20 bg-white relative border-b border-slate-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-blue-50 border border-brand-blue-200 text-brand-blue-700 text-xs sm:text-sm font-bold uppercase tracking-wider mb-3">
+            <Scale className="w-4 h-4 text-brand-amber-500" />
+            <span>{data.badge}</span>
+          </div>
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight">
+            {data.title}
+          </h2>
+          <p className="mt-3 text-slate-600 text-sm sm:text-base max-w-2xl mx-auto">
+            {data.subtitle}
+          </p>
+        </div>
+
+        {/* Side-by-Side Comparison Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch max-w-6xl mx-auto">
+          
+          {/* Card 1: Traditional Manual Hand Rolling (Red Tint) */}
+          <div className="animate-card-float-1 group relative overflow-hidden bg-rose-50/40 hover:bg-rose-50/70 rounded-3xl p-5 sm:p-7 border-2 border-rose-200 hover:border-rose-400 flex flex-col justify-between shadow-sm hover:shadow-xl hover:shadow-rose-500/10 hover:-translate-y-2 transition-all duration-300 before:absolute before:inset-0 before:-translate-x-full hover:before:translate-x-full before:bg-gradient-to-r before:from-transparent before:via-rose-200/30 before:to-transparent before:transition-transform before:duration-1000">
+            <div>
+              {/* Header */}
+              <div className="flex items-center justify-between pb-4 border-b border-rose-200 mb-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-rose-100 text-rose-700 flex items-center justify-center font-bold flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                    <AlertTriangle className="w-5 h-5 animate-bounce-gentle" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-black text-slate-900">
+                      {data.manualTitle}
+                    </h3>
+                    <span className="text-xs font-bold text-rose-600">
+                      {lang === 'mr' ? 'कमी वेग • जास्त खर्च' : lang === 'hi' ? 'धीमी गति • भारी लागत' : 'Low Speed • High Cost'}
+                    </span>
+                  </div>
+                </div>
+                <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-rose-100 text-rose-800">
+                  {lang === 'mr' ? '१२०-१५० लाडू/तास' : lang === 'hi' ? '120-150 लड्डू/घंटा' : '120-150 pcs/hr'}
+                </span>
+              </div>
+
+              {/* Points */}
+              <div className="space-y-3.5">
+                {data.manualPoints.map((item, idx) => (
+                  <div key={idx} className="group/item flex items-start gap-3 p-3 rounded-2xl bg-white border border-rose-100 hover:border-rose-300 hover:shadow-sm hover:translate-x-1 transition-all duration-200">
+                    <XCircle className="w-5 h-5 text-rose-500 flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform duration-200" />
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-900">{item.title}</h4>
+                      <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-rose-200/80 text-xs font-bold text-rose-800 text-center">
+              {lang === 'mr' 
+                ? '❌ तोटा: कामाचा ताण, सणासुदीला कारागीर न मिळणे आणि नफ्यात मोठे नुकसान.' 
+                : lang === 'hi'
+                ? '❌ नुकसान: अत्यधिक थकान, त्योहारों पर कारीगरों की कमी और मुनाफे का बड़ा नुकसान।'
+                : '❌ Consequence: Heavy fatigue, worker shortage during festivals, and lost profit.'}
+            </div>
+          </div>
+
+          {/* Card 2: SWARAJ Machine Automation (Green High-Impact) */}
+          <div className="animate-card-float-2 group relative overflow-hidden bg-emerald-50/40 hover:bg-emerald-50/70 rounded-3xl p-5 sm:p-7 border-2 border-emerald-500 hover:border-emerald-600 flex flex-col justify-between shadow-xl shadow-emerald-600/10 hover:shadow-2xl hover:shadow-emerald-600/25 hover:-translate-y-2 transition-all duration-300 before:absolute before:inset-0 before:-translate-x-full hover:before:translate-x-full before:bg-gradient-to-r before:from-transparent before:via-emerald-200/40 before:to-transparent before:transition-transform before:duration-1000">
+            <div className="absolute -top-3 right-6 bg-emerald-600 text-white text-[11px] font-black px-3 py-0.5 rounded-full uppercase tracking-wider shadow-md animate-soft-pulse z-10">
+              {lang === 'mr' ? 'व्यवसायासाठी सर्वोत्तम' : lang === 'hi' ? 'व्यापार के लिए सर्वोत्तम' : 'RECOMMENDED FOR BUSINESS'}
+            </div>
+
+            <div>
+              {/* Header */}
+              <div className="flex items-center justify-between pb-4 border-b border-emerald-200 mb-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold flex-shrink-0 group-hover:rotate-12 transition-transform duration-300">
+                    <Sparkles className="w-5 h-5 text-emerald-600 animate-spin-slow" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-black text-slate-900">
+                      {data.machineTitle}
+                    </h3>
+                    <span className="text-xs font-bold text-emerald-700">
+                      {lang === 'mr' ? '१० पट वेग • भरघोस नफा' : lang === 'hi' ? '10 गुना तेज गति • बंपर मुनाफा' : '10x Faster • Huge Margins'}
+                    </span>
+                  </div>
+                </div>
+                <span className="text-[11px] font-black px-2.5 py-1 rounded-full bg-emerald-600 text-white">
+                  {lang === 'mr' ? '१०००+ लाडू/तास' : lang === 'hi' ? '1000+ लड्डू/घंटा' : '1000+ pcs/hr'}
+                </span>
+              </div>
+
+              {/* Points */}
+              <div className="space-y-3.5">
+                {data.machinePoints.map((item, idx) => (
+                  <div key={idx} className="group/item flex items-start gap-3 p-3 rounded-2xl bg-white border border-emerald-200/80 hover:border-emerald-400 shadow-sm hover:shadow-md hover:translate-x-1 transition-all duration-200">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform duration-200" />
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-900">{item.title}</h4>
+                      <p className="text-xs text-slate-700 mt-0.5 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom Direct CTA */}
+            <div className="mt-6 pt-4 border-t border-emerald-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="text-xs font-bold text-emerald-900 text-center sm:text-left">
+                {lang === 'mr' ? 'दरमहा सरासरी बचत: ₹३०,००० ते ₹४०,०००' : lang === 'hi' ? 'औसत मासिक बचत: ₹30,000 से ₹40,000' : 'Average Monthly Savings: ₹30,000 - ₹40,000'}
+              </div>
+              <button
+                type="button"
+                onClick={onOpenQuote}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 hover:scale-105 active:scale-95 text-white font-black px-4 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all text-xs sm:text-sm group/btn"
+              >
+                <span>{lang === 'mr' ? 'कोटेशन मिळवा' : lang === 'hi' ? 'कोटेशन प्राप्त करें' : 'Get Quote'}</span>
+                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Commercial Payback Callout Banner */}
+        <div className="mt-10 sm:mt-12 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-slate-950 text-center max-w-4xl mx-auto shadow-lg font-bold text-sm sm:text-lg">
+          {data.bottomCallout}
+        </div>
+
+      </div>
+    </section>
+  );
+}
