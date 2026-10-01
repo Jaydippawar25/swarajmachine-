@@ -5,10 +5,10 @@ export default function TargetAudience({ t, lang, onOpenQuote }) {
   const data = t.audience;
 
   const icons = [
-    <Users className="w-6 h-6 text-pink-600" />,
-    <Store className="w-6 h-6 text-amber-600" />,
+    <Users className="w-6 h-6 text-brand-blue-600" />,
+    <Store className="w-6 h-6 text-brand-blue-600" />,
     <Briefcase className="w-6 h-6 text-brand-blue-600" />,
-    <Sparkles className="w-6 h-6 text-purple-600" />
+    <Sparkles className="w-6 h-6 text-brand-blue-600" />
   ];
 
   return (
@@ -32,13 +32,12 @@ export default function TargetAudience({ t, lang, onOpenQuote }) {
         {/* 4 Animated Clean Audience Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {data.items.map((item, idx) => {
-            const cardThemes = [
-              { borderHover: 'hover:border-rose-400', iconBg: 'bg-rose-50 border-rose-200 text-rose-600', accent: 'bg-rose-500', glow: 'hover:shadow-rose-500/10' },
-              { borderHover: 'hover:border-amber-400', iconBg: 'bg-amber-50 border-amber-200 text-amber-600', accent: 'bg-amber-500', glow: 'hover:shadow-amber-500/10' },
-              { borderHover: 'hover:border-blue-400', iconBg: 'bg-blue-50 border-blue-200 text-blue-600', accent: 'bg-blue-500', glow: 'hover:shadow-blue-500/10' },
-              { borderHover: 'hover:border-purple-400', iconBg: 'bg-purple-50 border-purple-200 text-purple-600', accent: 'bg-purple-500', glow: 'hover:shadow-purple-500/10' },
-            ];
-            const theme = cardThemes[idx % cardThemes.length];
+            const theme = {
+              borderHover: 'hover:border-brand-blue-400',
+              iconBg: 'bg-brand-blue-50 border-brand-blue-200 text-brand-blue-700',
+              accent: 'bg-brand-blue-600',
+              glow: 'hover:shadow-brand-blue-500/10'
+            };
 
             return (
               <div

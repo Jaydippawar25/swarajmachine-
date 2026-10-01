@@ -18,6 +18,10 @@ export default function BackupRestore() {
       const settings = await contentService.getSettings();
       const calculator = await contentService.getCalculatorSettings();
       const testimonials = await contentService.getTestimonials();
+      const offers = await contentService.getOffers();
+      const specs = await contentService.getSpecs();
+      const brochures = await contentService.getBrochures();
+      const faqs = await contentService.getFaqs();
 
       const backupData = {
         exportedAt: new Date().toISOString(),
@@ -28,7 +32,11 @@ export default function BackupRestore() {
           content,
           settings,
           calculator,
-          testimonials
+          testimonials,
+          offers,
+          specs,
+          brochures,
+          faqs
         }
       };
 
@@ -63,6 +71,11 @@ export default function BackupRestore() {
         if (parsed.data.settings) await contentService.saveSettings(parsed.data.settings);
         if (parsed.data.calculator) await contentService.saveCalculatorSettings(parsed.data.calculator);
         if (parsed.data.content) await contentService.saveContent(parsed.data.content);
+        if (parsed.data.testimonials) await contentService.saveTestimonials(parsed.data.testimonials);
+        if (parsed.data.offers) await contentService.saveOffers(parsed.data.offers);
+        if (parsed.data.specs) await contentService.saveSpecs(parsed.data.specs);
+        if (parsed.data.brochures) await contentService.saveBrochures(parsed.data.brochures);
+        if (parsed.data.faqs) await contentService.saveFaqs(parsed.data.faqs);
 
         await activityService.log('backup_restore', 'Restored system from JSON file', user);
         toast.success(adminLang === 'mr' ? 'सिस्टीम बॅकअपमधून पूर्ववत झाली!' : adminLang === 'hi' ? 'सिस्टम बैकअप से रीस्टोर हो गया!' : 'System restored from backup successfully!');

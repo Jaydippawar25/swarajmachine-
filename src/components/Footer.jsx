@@ -1,10 +1,16 @@
 import React from 'react';
-import { Phone, MapPin, Clock, Award, PhoneCall } from 'lucide-react';
+import { Phone, MapPin, Clock, Award, PhoneCall, Mail } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
 import logoImg from '../assets/logo.png';
 
-export default function Footer({ t, lang, onOpenQuote }) {
+export default function Footer({ t, lang, onOpenQuote, settings }) {
   const data = t.footer;
+
+  const phone = settings?.phone || t.nav.phone;
+  const whatsappNumber = settings?.whatsappNumber || t.nav.whatsappNumber;
+  const email = settings?.notificationEmail || settings?.email || data.email || t.nav.email || 'mkenterprises2325@gmail.com';
+  const address = settings?.address || data.address;
+  const sections = settings?.sections || {};
 
   return (
     <footer className="bg-slate-950 text-slate-400 pt-12 pb-10 border-t border-slate-800 text-xs sm:text-sm">
@@ -38,12 +44,13 @@ export default function Footer({ t, lang, onOpenQuote }) {
               {data.quickLinks}
             </h4>
             <ul className="space-y-2 text-xs">
-              <li><a href="#machine-showcase" className="hover:text-white transition">{t.nav.overview}</a></li>
-              <li><a href="#comparison" className="hover:text-white transition">{t.nav.comparison}</a></li>
-              <li><a href="#calculator" className="hover:text-white transition">{t.nav.calculator}</a></li>
-              <li><a href="#process" className="hover:text-white transition">{t.nav.process}</a></li>
-              <li><a href="#brochures" className="hover:text-white transition">{t.nav.brochure}</a></li>
-              <li><a href="#faq" className="hover:text-white transition">{t.nav.faq}</a></li>
+              {sections.showcase !== false && <li><a href="#machine-showcase" className="hover:text-white transition">{t.nav.overview}</a></li>}
+              {sections.comparison !== false && <li><a href="#comparison" className="hover:text-white transition">{t.nav.comparison}</a></li>}
+              {sections.calculator !== false && <li><a href="#calculator" className="hover:text-white transition">{t.nav.calculator}</a></li>}
+              {sections.process !== false && <li><a href="#process" className="hover:text-white transition">{t.nav.process}</a></li>}
+              {sections.brochures !== false && <li><a href="#brochures" className="hover:text-white transition">{t.nav.brochure}</a></li>}
+              {sections.testimonials !== false && <li><a href="#testimonials" className="hover:text-white transition">{lang === 'mr' ? 'अभिप्राय' : lang === 'hi' ? 'समीक्षा' : 'Reviews'}</a></li>}
+              {sections.faq !== false && <li><a href="#faq" className="hover:text-white transition">{t.nav.faq}</a></li>}
             </ul>
           </div>
 
@@ -54,24 +61,30 @@ export default function Footer({ t, lang, onOpenQuote }) {
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-brand-blue-400 flex-shrink-0 mt-0.5" />
-                <span>{data.address}</span>
+                <MapPin className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+                <span>{address}</span>
               </li>
               <li className="flex items-center gap-2">
-                <PhoneCall className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <a href={`tel:${t.nav.phone}`} className="hover:text-white transition font-bold text-white">
-                  {t.nav.phone}
+                <PhoneCall className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                <a href={`tel:${phone}`} className="hover:text-white transition font-bold text-white">
+                  {phone}
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <WhatsAppIcon className="w-4 h-4 text-emerald-400 flex-shrink-0 fill-current" />
+                <WhatsAppIcon className="w-4 h-4 text-amber-400 flex-shrink-0 fill-current" />
                 <a
-                  href={`https://wa.me/${t.nav.whatsappNumber}`}
+                  href={`https://wa.me/${whatsappNumber}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-emerald-400 transition font-bold text-white"
+                  className="hover:text-white transition font-bold text-white"
                 >
-                  WhatsApp: {t.nav.phone}
+                  WhatsApp: {phone}
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                <a href={`mailto:${email}`} className="hover:text-white transition font-medium text-white truncate">
+                  {email}
                 </a>
               </li>
               <li className="flex items-center gap-2">

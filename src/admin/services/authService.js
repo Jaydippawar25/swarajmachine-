@@ -13,8 +13,8 @@ const LAST_ACTIVITY_KEY = 'swaraj_admin_last_activity';
 // Default Owner account for demo/offline fallback
 export const DEFAULT_DEMO_OWNER = {
   uid: 'demo-owner-001',
-  email: 'admin@swarajmachine.com',
-  displayName: 'Swaraj Owner',
+  email: 'mkenterprises2325@gmail.com',
+  displayName: 'MK Enterprises',
   role: 'owner',
   photoURL: null,
 };
@@ -56,11 +56,13 @@ export const authService = {
       };
     } else {
       // Local/demo fallback
-      if (email.toLowerCase() === 'admin@swarajmachine.com' && password === 'Swaraj@2026') {
-        localStorage.setItem(LOCAL_USER_KEY, JSON.stringify(DEFAULT_DEMO_OWNER));
-        return DEFAULT_DEMO_OWNER;
+      const normalizedEmail = email.toLowerCase().trim();
+      if ((normalizedEmail === 'mkenterprises2325@gmail.com' || normalizedEmail === 'admin@swarajmachine.com') && password === 'Swaraj@2026') {
+        const demoUser = { ...DEFAULT_DEMO_OWNER, email: normalizedEmail };
+        localStorage.setItem(LOCAL_USER_KEY, JSON.stringify(demoUser));
+        return demoUser;
       } else {
-        throw new Error('Invalid email or password. Use admin@swarajmachine.com / Swaraj@2026 for demo.');
+        throw new Error('Invalid email or password. Use mkenterprises2325@gmail.com / Swaraj@2026 for demo.');
       }
     }
   },

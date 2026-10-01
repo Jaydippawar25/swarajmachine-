@@ -4,7 +4,7 @@ import WhatsAppIcon from './WhatsAppIcon';
 import logoImg from '../assets/logo.png';
 import partyPopperImg from '../assets/party-popper.png';
 
-export default function Navbar({ lang, setLang, t, onOpenQuote }) {
+export default function Navbar({ lang, setLang, t, onOpenQuote, offers, settings }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -16,14 +16,29 @@ export default function Navbar({ lang, setLang, t, onOpenQuote }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { href: '#machine-showcase', label: t.nav.overview },
-    { href: '#comparison', label: t.nav.comparison },
-    { href: '#calculator', label: t.nav.calculator },
-    { href: '#process', label: t.nav.process },
-    { href: '#brochures', label: t.nav.brochure },
-    { href: '#faq', label: t.nav.faq },
+  const phone = settings?.phone || t.nav.phone;
+  const whatsappNumber = settings?.whatsappNumber || t.nav.whatsappNumber;
+
+  const sections = settings?.sections || {};
+
+  const allNavLinks = [
+    { href: '#machine-showcase', label: t.nav.overview, show: sections.showcase !== false },
+    { href: '#comparison', label: t.nav.comparison, show: sections.comparison !== false },
+    { href: '#calculator', label: t.nav.calculator, show: sections.calculator !== false },
+    { href: '#process', label: t.nav.process, show: sections.process !== false },
+    { href: '#brochures', label: t.nav.brochure, show: sections.brochures !== false },
+    { href: '#testimonials', label: lang === 'mr' ? 'अभिप्राय' : lang === 'hi' ? 'समीक्षा' : 'Reviews', show: sections.testimonials !== false },
+    { href: '#faq', label: t.nav.faq, show: sections.faq !== false },
   ];
+  const navLinks = allNavLinks.filter(l => l.show);
+
+  // Check offer expiry
+  const isOfferExpired = offers?.hasExpiry && offers?.expiryDate && new Date(offers.expiryDate) < new Date();
+  const showOfferBanner = (offers ? offers.enabled : true) && !isOfferExpired;
+
+  const offerPrefix = offers?.prefix || t.nav.offerPrefix;
+  const offerText = offers?.offerText || t.nav.offerText;
+  const offerCta = offers?.ctaText || t.nav.offerCta;
 
   const handleWhatsapp = () => {
     const text = lang === 'mr'
@@ -31,46 +46,48 @@ export default function Navbar({ lang, setLang, t, onOpenQuote }) {
       : lang === 'hi'
       ? "नमस्ते Swaraj Machinery, मुझे राजगिरा और मुरमुरा लड्डू मेकिंग मशीन की पूरी जानकारी और फैक्टरी रेट चाहिए।"
       : "Hello Swaraj Machinery, please share complete specifications and factory price quotation for the Laddu Making Machine.";
-    window.open(`https://wa.me/${t.nav.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (
     <>
       {/* Top Urgent Offer Announcement Bar */}
-      <div className="relative overflow-hidden bg-slate-950 text-white border-b border-amber-500/25 z-50 py-1.5 px-3 text-xs">
-        <div className="max-w-[1440px] mx-auto flex items-center justify-between sm:justify-center gap-2">
-          <div 
-            onClick={onOpenQuote}
-            className="flex items-center gap-2 cursor-pointer hover:text-amber-300 transition truncate"
-          >
-            <img 
-              src={partyPopperImg} 
-              alt="Party popper" 
-              className="w-4 h-4 sm:w-5 sm:h-5 object-contain flex-shrink-0" 
-            />
-            <span className="font-black text-amber-400 uppercase tracking-wide flex-shrink-0">
-              {t.nav.offerPrefix}
-            </span>
-            <span className="text-slate-200 hidden sm:inline truncate">
-              {t.nav.offerText}
-            </span>
-            <img 
-              src={partyPopperImg} 
-              alt="Party popper" 
-              className="w-4 h-4 sm:w-5 sm:h-5 object-contain flex-shrink-0 -scale-x-100" 
-            />
-          </div>
+      {showOfferBanner && (
+        <div className="relative overflow-hidden bg-slate-950 text-white border-b border-amber-500/25 z-50 py-1.5 px-3 text-xs">
+          <div className="max-w-[1440px] mx-auto flex items-center justify-between sm:justify-center gap-2">
+            <div 
+              onClick={onOpenQuote}
+              className="flex items-center gap-2 cursor-pointer hover:text-amber-300 transition truncate"
+            >
+              <img 
+                src={partyPopperImg} 
+                alt="Party popper" 
+                className="w-4 h-4 sm:w-5 sm:h-5 object-contain flex-shrink-0" 
+              />
+              <span className="font-black text-amber-400 uppercase tracking-wide flex-shrink-0">
+                {offerPrefix}
+              </span>
+              <span className="text-slate-200 hidden sm:inline truncate">
+                {offerText}
+              </span>
+              <img 
+                src={partyPopperImg} 
+                alt="Party popper" 
+                className="w-4 h-4 sm:w-5 sm:h-5 object-contain flex-shrink-0 -scale-x-100" 
+              />
+            </div>
 
-          <button
-            type="button"
-            onClick={onOpenQuote}
-            className="inline-flex items-center gap-1 bg-amber-400 hover:bg-amber-300 text-slate-950 px-2.5 py-0.5 rounded-full text-[11px] font-black transition flex-shrink-0"
-          >
-            <span>{t.nav.offerCta}</span>
-            <ArrowRight className="w-3 h-3" />
-          </button>
+            <button
+              type="button"
+              onClick={onOpenQuote}
+              className="inline-flex items-center gap-1 bg-amber-400 hover:bg-amber-300 text-slate-950 px-2.5 py-0.5 rounded-full text-[11px] font-black transition flex-shrink-0 cursor-pointer"
+            >
+              <span>{offerCta}</span>
+              <ArrowRight className="w-3 h-3" />
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Main Sticky Navigation */}
       <header className={`sticky top-0 z-40 transition-all duration-300 ${
@@ -151,10 +168,10 @@ export default function Navbar({ lang, setLang, t, onOpenQuote }) {
 
               {/* Call Button */}
               <a
-                href={`tel:${t.nav.phone}`}
+                href={`tel:${phone}`}
                 className="hidden md:inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-800 hover:bg-slate-50 transition whitespace-nowrap flex-shrink-0"
               >
-                <PhoneCall className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+                <PhoneCall className="w-3.5 h-3.5 text-brand-blue-600 flex-shrink-0" />
                 <span>{t.nav.callUs}</span>
               </a>
 

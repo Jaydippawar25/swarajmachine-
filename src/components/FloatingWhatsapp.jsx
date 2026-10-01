@@ -2,12 +2,15 @@ import React from 'react';
 import { PhoneCall } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
 
-export default function FloatingWhatsapp({ t, lang, onOpenQuote }) {
+export default function FloatingWhatsapp({ t, lang, onOpenQuote, settings }) {
+  const phone = settings?.phone || t.nav.phone;
+  const whatsappNumber = settings?.whatsappNumber || t.nav.whatsappNumber;
+
   const handleChat = () => {
     const text = lang === 'mr'
       ? "नमस्कार Swaraj Machinery, मला राजगिरा आणि मुरमुरा लाडू मेकिंग मशीनबद्दल माहिती हवी आहे."
       : "नमस्ते Swaraj Machinery, मुझे राजगिरा और मुरमुरा लड्डू मेकिंग मशीन की जानकारी चाहिए।";
-    window.open(`https://wa.me/${t.nav.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (
@@ -33,7 +36,7 @@ export default function FloatingWhatsapp({ t, lang, onOpenQuote }) {
       {/* Mobile Sticky Bottom Conversion Bar */}
       <div className="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 px-3 py-2 shadow-2xl flex items-center gap-2">
         <a
-          href={`tel:${t.nav.phone}`}
+          href={`tel:${phone}`}
           className="flex-1 inline-flex items-center justify-center gap-1.5 bg-slate-900 text-white py-2.5 px-3 rounded-xl font-bold text-xs"
         >
           <PhoneCall className="w-3.5 h-3.5 text-amber-400" />

@@ -103,16 +103,24 @@ const INITIAL_FAQS_BY_LANG = {
   ]
 };
 
+import { contentService, defaultFaqsByLang } from '../services/contentService';
+
 export default function FaqManager() {
   const { user, at, adminLang } = useAuth();
   const [activeLang, setActiveLang] = useState(adminLang || 'en');
-  const [allFaqs, setAllFaqs] = useState(() => {
-    try {
-      const saved = localStorage.getItem('swaraj_faqs_by_lang');
-      if (saved) return JSON.parse(saved);
-    } catch (e) {}
-    return INITIAL_FAQS_BY_LANG;
-  });
+  const [isSaving, setIsSaving] = useState(false);
+  const [allFaqs, setAllFaqs] = useState(defaultFaqsByLang);
+
+  useEffect(() => {
+    loadFaqs();
+  }, []);
+
+  const loadFaqs = async () => {
+    const data = await contentService.getFaqs();
+    if (data) {
+      setAllFaqs(data);
+    }
+  };
 
   // Sync active language with global admin language if user toggles in navbar
   useEffect(() => {
@@ -166,18 +174,21 @@ export default function FaqManager() {
   };
 
   const handleSave = async () => {
+    setIsSaving(true);
     try {
-      localStorage.setItem('swaraj_faqs_by_lang', JSON.stringify(allFaqs));
+      await contentService.saveFaqs(allFaqs);
       await activityService.log('faq_update', `Updated ${currentFaqs.length} ${activeLang.toUpperCase()} FAQs`, user);
       toast.success(
         activeLang === 'mr' 
-          ? 'प्रश्न यशस्वीरीत्या सेव्ह झाले!' 
+          ? 'प्रश्न यशस्वीरीत्या सेव्ह झाले व वेबसाइटवर अपडेट झाले!' 
           : activeLang === 'hi' 
-          ? 'प्रश्न सफलतापूर्वक सेव हुए!' 
-          : 'English FAQs saved and published successfully!'
+          ? 'प्रश्न सफलतापूर्वक सेव हुए व वेबसाइट पर अपडेट हुए!' 
+          : 'FAQs saved and published live!'
       );
     } catch (e) {
       toast.error('Failed to save FAQs');
+    } finally {
+      setIsSaving(false);
     }
   };
 

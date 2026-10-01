@@ -29,8 +29,26 @@ export default function TranslationsEditor() {
   };
 
   const handleSave = async () => {
-    await activityService.log('translations_update', 'Saved live translations dictionary', user);
-    toast.success(adminLang === 'mr' ? 'भाषांतर शब्दकोश सेव्ह झाला!' : adminLang === 'hi' ? 'अनुवाद शब्दकोश सेव हो गया!' : 'Translations published!');
+    try {
+      const existing = (await contentService.getContent()) || translations;
+      const updated = JSON.parse(JSON.stringify(existing));
+      data.forEach(item => {
+        const parts = item.key.split('.');
+        if (parts.length === 2) {
+          const [sec, k] = parts;
+          ['hi', 'mr', 'en'].forEach(l => {
+            if (!updated[l]) updated[l] = {};
+            if (!updated[l][sec]) updated[l][sec] = {};
+            if (item[l]) updated[l][sec][k] = item[l];
+          });
+        }
+      });
+      await contentService.saveContent(updated);
+      await activityService.log('translations_update', 'Saved live translations dictionary', user);
+      toast.success(adminLang === 'mr' ? 'भाषांतर शब्दकोश सेव्ह झाला!' : adminLang === 'hi' ? 'अनुवाद शब्दकोश सेव हो गया!' : 'Translations published!');
+    } catch (e) {
+      toast.error('Failed to save translations');
+    }
   };
 
   const filtered = data.filter(d => 

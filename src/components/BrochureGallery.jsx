@@ -5,11 +5,13 @@ import poster2 from '../assets/features-poster.jpg';
 import machineShot from '../assets/machine-laddu-tray.jpg';
 import WhatsAppIcon from './WhatsAppIcon';
 
-export default function BrochureGallery({ t, lang }) {
+export default function BrochureGallery({ t, lang, brochures, settings }) {
   const [selectedImg, setSelectedImg] = useState(null);
   const data = t.brochures;
 
-  const galleryItems = [
+  const whatsappNumber = settings?.whatsappNumber || t.nav.whatsappNumber;
+
+  const defaultItems = [
     {
       id: 1,
       src: poster1,
@@ -27,11 +29,33 @@ export default function BrochureGallery({ t, lang }) {
     }
   ];
 
+  const getThumb = (item, idx) => {
+    if (item.thumb) return item.thumb;
+    if (item.thumbType === 'features' || idx === 1) return poster2;
+    if (idx === 2) return machineShot;
+    return poster1;
+  };
+
+  const dynamicItems = (brochures?.items && brochures.items.length > 0)
+    ? brochures.items.map((item, idx) => ({
+        id: item.id || idx,
+        src: getThumb(item, idx),
+        title: item.title,
+        desc: item.desc,
+        size: item.size
+      }))
+    : defaultItems;
+
   const handleWhatsappBrochure = (title) => {
-    const text = lang === 'mr'
-      ? `नमस्कार, मला Swaraj Machinery च्या "${title}" चे ब्रोशर PDF आणि दर पाठवा.`
-      : `नमस्ते, मुझे Swaraj Machinery के "${title}" का ब्रोशर PDF और रेट भेजिए।`;
-    window.open(`https://wa.me/${t.nav.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
+    let text = '';
+    if (brochures?.whatsappTemplate) {
+      text = `${brochures.whatsappTemplate} (${title})`;
+    } else {
+      text = lang === 'mr'
+        ? `नमस्कार, मला Swaraj Machinery च्या "${title}" चे ब्रोशर PDF आणि दर पाठवा.`
+        : `नमस्ते, मुझे Swaraj Machinery के "${title}" का ब्रोशर PDF और रेट भेजिए।`;
+    }
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (
@@ -54,7 +78,7 @@ export default function BrochureGallery({ t, lang }) {
 
         {/* Gallery Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
-          {galleryItems.map((item) => (
+          {dynamicItems.map((item) => (
             <div
               key={item.id}
               className="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 hover:shadow-lg transition flex flex-col justify-between group"

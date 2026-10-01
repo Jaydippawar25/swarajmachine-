@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import { FileSpreadsheet, CheckCircle, TrendingUp, Users, ArrowRight, ShieldCheck, Zap, Factory, FileText, PhoneCall } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-export default function RoiCalculator({ t, lang, onOpenQuote }) {
+export default function RoiCalculator({ t, lang, onOpenQuote, calculatorSettings }) {
+  const minLaddus = calculatorSettings?.minProduction || 500;
+  const maxLaddus = calculatorSettings?.maxProduction || 4000;
+  const stepLaddus = calculatorSettings?.stepProduction || 100;
+  const defaultLaddus = calculatorSettings?.defaultProduction || 1500;
+  const workingDays = calculatorSettings?.workingDaysPerMonth || 26;
+
   const [productType, setProductType] = useState('rajgira');
-  const [dailyLaddus, setDailyLaddus] = useState(1500);
+  const [dailyLaddus, setDailyLaddus] = useState(defaultLaddus);
   const [ladduPrice, setLadduPrice] = useState(8);
   const [rawMaterialCost, setRawMaterialCost] = useState(3.5);
 
@@ -21,8 +27,7 @@ export default function RoiCalculator({ t, lang, onOpenQuote }) {
     }
   };
 
-  // Business Economics (26 working days/month)
-  const workingDays = 26;
+  // Business Economics
   const monthlyLaddus = dailyLaddus * workingDays;
   const monthlyRevenue = Math.round(monthlyLaddus * ladduPrice);
   const monthlyRawCost = Math.round(monthlyLaddus * rawMaterialCost);
@@ -77,29 +82,29 @@ export default function RoiCalculator({ t, lang, onOpenQuote }) {
         {/* Authentic Business Planning Document / Ledger Box */}
         <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
           
-          {/* Top Document Header Bar (Soft Low-Opacity Orange Theme) */}
-          <div className="bg-gradient-to-r from-orange-500/15 via-amber-500/10 to-orange-400/15 border-b border-orange-200/80 px-5 sm:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          {/* Top Document Header Bar - Professional Slate & Amber Theme */}
+          <div className="bg-slate-900 border-b border-slate-800 px-5 sm:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <div className="flex items-center gap-2">
-                <Factory className="w-5 h-5 text-orange-600" />
-                <span className="font-black text-base sm:text-lg tracking-wide text-slate-900">
+                <Factory className="w-5 h-5 text-amber-400" />
+                <span className="font-black text-base sm:text-lg tracking-wide text-white">
                   {lang === 'mr' ? 'लाडू उत्पादन व्यवसाय ताळेबंद' : lang === 'hi' ? 'लड्डू निर्माण व्यवसाय बैलेंस शीट' : 'Laddu Production P&L Statement'}
                 </span>
               </div>
-              <p className="text-xs text-slate-600 font-medium mt-0.5">
+              <p className="text-xs text-slate-400 font-medium mt-0.5">
                 {lang === 'mr' ? '२६ कामकाजाचे दिवस • प्रत्यक्ष कारखान्यातील प्रत्यक्ष खर्चावर आधारित' : lang === 'hi' ? '26 कार्य दिवस • कारखाने के वास्तविक खर्चों पर आधारित' : '26 working days per month • Based on real factory costs'}
               </p>
             </div>
 
             {/* Product Preset Tabs */}
-            <div className="flex items-center gap-1.5 bg-white/90 p-1 rounded-xl border border-orange-200/90 shadow-sm">
+            <div className="flex items-center gap-1.5 bg-slate-800 p-1 rounded-xl border border-slate-700 shadow-sm">
               <button
                 type="button"
                 onClick={() => handleProductPreset('rajgira')}
-                className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                   productType === 'rajgira'
-                    ? 'bg-orange-600 text-white shadow-sm font-black'
-                    : 'text-slate-700 hover:text-orange-600 hover:bg-orange-50'
+                    ? 'bg-brand-blue-600 text-white shadow-sm font-black'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-700/60'
                 }`}
               >
                 🌾 {data.presetRajgira}
@@ -107,10 +112,10 @@ export default function RoiCalculator({ t, lang, onOpenQuote }) {
               <button
                 type="button"
                 onClick={() => handleProductPreset('murmura')}
-                className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                   productType === 'murmura'
-                    ? 'bg-orange-600 text-white shadow-sm font-black'
-                    : 'text-slate-700 hover:text-orange-600 hover:bg-orange-50'
+                    ? 'bg-brand-blue-600 text-white shadow-sm font-black'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-700/60'
                 }`}
               >
                 🍯 {data.presetMurmura}
@@ -141,7 +146,7 @@ export default function RoiCalculator({ t, lang, onOpenQuote }) {
                       <label className="text-xs sm:text-sm font-black text-slate-800">
                         {data.sliderLaddus}
                       </label>
-                      <span className="text-sm font-black text-brand-blue-900 bg-brand-blue-100 px-3 py-1 rounded-md border border-brand-blue-300">
+                      <span className="text-sm font-black text-brand-blue-700 bg-brand-blue-50 px-3 py-1 rounded-md border border-brand-blue-200">
                         {dailyLaddus.toLocaleString()} {lang === 'mr' ? 'लाडू/दिवस' : lang === 'hi' ? 'लड्डू/दिन' : 'laddus/day'}
                       </span>
                     </div>
@@ -153,10 +158,10 @@ export default function RoiCalculator({ t, lang, onOpenQuote }) {
                           key={qty}
                           type="button"
                           onClick={() => setDailyLaddus(qty)}
-                          className={`text-[11px] font-bold px-2 py-0.5 rounded border transition-all ${
+                          className={`text-[11px] font-bold px-2.5 py-1 rounded-lg border transition-all cursor-pointer ${
                             dailyLaddus === qty
-                              ? 'bg-brand-blue-600 text-white border-brand-blue-600'
-                              : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-100'
+                              ? 'bg-brand-blue-600 text-white border-brand-blue-600 shadow-xs'
+                              : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
                           }`}
                         >
                           {qty.toLocaleString()}
@@ -166,16 +171,16 @@ export default function RoiCalculator({ t, lang, onOpenQuote }) {
 
                     <input
                       type="range"
-                      min="500"
-                      max="4000"
-                      step="100"
+                      min={minLaddus}
+                      max={maxLaddus}
+                      step={stepLaddus}
                       value={dailyLaddus}
                       onChange={(e) => setDailyLaddus(Number(e.target.value))}
-                      className="w-full h-2 bg-slate-300 rounded appearance-none cursor-pointer accent-brand-blue-700"
+                      className="w-full h-2 bg-slate-200 rounded appearance-none cursor-pointer accent-brand-blue-600"
                     />
                     <div className="flex justify-between text-[10px] text-slate-500 font-semibold mt-1">
-                      <span>{lang === 'mr' ? 'किमान: ५०० लाडू' : lang === 'hi' ? 'न्यूनतम: 500 लड्डू' : 'Min: 500 laddus'}</span>
-                      <span>{lang === 'mr' ? 'मशीन कमाल क्षमता: ४,०००+ लाडू' : lang === 'hi' ? 'अधिकतम क्षमता: 4,000+ लड्डू' : 'Max Capacity: 4,000+ laddus'}</span>
+                      <span>{lang === 'mr' ? `किमान: ${minLaddus.toLocaleString()} लाडू` : lang === 'hi' ? `न्यूनतम: ${minLaddus.toLocaleString()} लड्डू` : `Min: ${minLaddus.toLocaleString()} laddus`}</span>
+                      <span>{lang === 'mr' ? `मशीन कमाल क्षमता: ${maxLaddus.toLocaleString()}+ लाडू` : lang === 'hi' ? `अधिकतम क्षमता: ${maxLaddus.toLocaleString()}+ लड्डू` : `Max Capacity: ${maxLaddus.toLocaleString()}+ laddus`}</span>
                     </div>
                   </div>
 
@@ -185,7 +190,7 @@ export default function RoiCalculator({ t, lang, onOpenQuote }) {
                       <label className="text-xs sm:text-sm font-black text-slate-800">
                         {data.sliderPrice}
                       </label>
-                      <span className="text-sm font-black text-emerald-900 bg-emerald-100 px-3 py-1 rounded-md border border-emerald-300">
+                      <span className="text-sm font-black text-brand-blue-700 bg-brand-blue-50 px-3 py-1 rounded-md border border-brand-blue-200">
                         ₹{ladduPrice.toFixed(2)}
                       </span>
                     </div>
@@ -196,7 +201,7 @@ export default function RoiCalculator({ t, lang, onOpenQuote }) {
                       step="0.5"
                       value={ladduPrice}
                       onChange={(e) => setLadduPrice(Number(e.target.value))}
-                      className="w-full h-2 bg-slate-300 rounded appearance-none cursor-pointer accent-emerald-700"
+                      className="w-full h-2 bg-slate-200 rounded appearance-none cursor-pointer accent-brand-blue-600"
                     />
                     <div className="flex justify-between text-[10px] text-slate-500 font-semibold mt-1">
                       <span>{lang === 'mr' ? 'घाऊक भाव: ₹४ ते ₹६' : lang === 'hi' ? 'थोक भाव: ₹4 से ₹6' : 'Wholesale: ₹4 - ₹6'}</span>
@@ -210,7 +215,7 @@ export default function RoiCalculator({ t, lang, onOpenQuote }) {
                       <label className="text-xs sm:text-sm font-black text-slate-800">
                         {data.sliderCost}
                       </label>
-                      <span className="text-sm font-black text-amber-900 bg-amber-100 px-3 py-1 rounded-md border border-amber-300">
+                      <span className="text-sm font-black text-brand-blue-700 bg-brand-blue-50 px-3 py-1 rounded-md border border-brand-blue-200">
                         ₹{rawMaterialCost.toFixed(2)}
                       </span>
                     </div>
@@ -221,7 +226,7 @@ export default function RoiCalculator({ t, lang, onOpenQuote }) {
                       step="0.1"
                       value={rawMaterialCost}
                       onChange={(e) => setRawMaterialCost(Number(e.target.value))}
-                      className="w-full h-2 bg-slate-300 rounded appearance-none cursor-pointer accent-amber-600"
+                      className="w-full h-2 bg-slate-200 rounded appearance-none cursor-pointer accent-brand-blue-600"
                     />
                     <div className="flex justify-between text-[10px] text-slate-500 font-semibold mt-1">
                       <span>{lang === 'mr' ? 'गूळ, धान्य व गॅस खर्च (प्रति लाडू सरासरी ₹२.२० ते ₹३.५०)' : lang === 'hi' ? 'गुड़, अनाज व गैस खर्च (प्रति लड्डू औसत ₹2.20 से ₹3.50)' : 'Jaggery, grain & gas cost (~₹2.20 - ₹3.50/laddu)'}</span>
@@ -230,26 +235,26 @@ export default function RoiCalculator({ t, lang, onOpenQuote }) {
                 </div>
               </div>
 
-              {/* Real World Labor Savings Box */}
-              <div className="mt-6 p-4 rounded-xl bg-amber-50/80 border-2 border-amber-200">
+              {/* Real World Labor Savings Box - Clean Brand Styling */}
+              <div className="mt-6 p-4 rounded-xl bg-white border border-slate-200 shadow-xs">
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-amber-500 text-slate-950 flex items-center justify-center font-black flex-shrink-0 mt-0.5">
+                  <div className="w-9 h-9 rounded-xl bg-brand-blue-50 text-brand-blue-600 border border-brand-blue-100 flex items-center justify-center font-bold flex-shrink-0 mt-0.5">
                     <Users className="w-5 h-5" />
                   </div>
                   <div className="flex-1">
-                    <div className="text-xs font-black uppercase text-amber-900">
+                    <div className="text-xs font-black uppercase tracking-wider text-slate-800">
                       {lang === 'mr' ? 'पारंपरिक पद्धतीशी तुलना (मजुरी बचत):' : lang === 'hi' ? 'पारंपरिक लेबर से तुलना (बचत):' : 'Labor Cost Savings:'}
                     </div>
-                    <p className="text-xs text-slate-700 font-medium mt-0.5 leading-relaxed">
+                    <p className="text-xs text-slate-600 font-medium mt-0.5 leading-relaxed">
                       {lang === 'mr' 
                         ? `हाताने एवढे लाडू वळण्यासाठी ${manualWorkers} कारागीर लागतात. मशीनवर फक्त १ व्यक्ती पुरेशी आहे.`
                         : lang === 'hi'
                         ? `हाथ से इतने लड्डू बनाने के लिए ${manualWorkers} कारीगर चाहिए, मशीन पर सिर्फ 1 व्यक्ति काफी है।`
                         : `Rolling these laddus manually requires ${manualWorkers} workers. With the machine, just 1 person is needed.`}
                     </p>
-                    <div className="mt-2 text-sm font-black text-amber-950 flex items-center justify-between border-t border-amber-200 pt-1.5">
+                    <div className="mt-2.5 text-xs sm:text-sm font-bold text-slate-800 flex items-center justify-between border-t border-slate-100 pt-2">
                       <span>{lang === 'mr' ? 'थेट वाचणारा कामगार पगार:' : lang === 'hi' ? 'सीधी लेबर वेतन बचत:' : 'Direct Labor Wages Saved:'}</span>
-                      <span className="text-base text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded border border-emerald-300">
+                      <span className="text-sm font-black text-brand-blue-700 bg-brand-blue-50 px-2.5 py-0.5 rounded border border-brand-blue-200">
                         + ₹{monthlyLaborSaved.toLocaleString()} / {lang === 'mr' ? 'महिना' : lang === 'hi' ? 'माह' : 'mo'}
                       </span>
                     </div>
@@ -265,10 +270,10 @@ export default function RoiCalculator({ t, lang, onOpenQuote }) {
                 {/* Ledger Header */}
                 <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-200">
                   <span className="text-xs font-black uppercase text-slate-700 tracking-wider flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
+                    <span className="w-2 h-2 rounded-full bg-brand-blue-600"></span>
                     {lang === 'mr' ? '२. मासिक ताळेबंद (P&L Breakdown)' : lang === 'hi' ? '2. मासिक आय-व्यय (P&L Breakdown)' : '2. Monthly P&L Ledger'}
                   </span>
-                  <span className="text-xs font-black px-2.5 py-1 rounded bg-emerald-100 text-emerald-900 border border-emerald-300">
+                  <span className="text-xs font-bold px-2.5 py-1 rounded bg-brand-blue-50 text-brand-blue-700 border border-brand-blue-200">
                     {profitMargin}% {lang === 'mr' ? 'निव्वळ नफा मार्जिन' : lang === 'hi' ? 'शुद्ध लाभ मार्जिन' : 'Net Margin'}
                   </span>
                 </div>
@@ -278,7 +283,7 @@ export default function RoiCalculator({ t, lang, onOpenQuote }) {
                   {/* Row 1: Total Revenue */}
                   <div className="flex items-center justify-between p-3 bg-slate-50 border-b border-slate-200">
                     <div className="flex items-center gap-2">
-                      <span className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[11px] font-black">+</span>
+                      <span className="w-5 h-5 rounded-full bg-brand-blue-600 text-white flex items-center justify-center text-[11px] font-black">+</span>
                       <span className="font-bold text-slate-800">{data.monthlySales}</span>
                     </div>
                     <span className="font-black text-slate-900 text-sm sm:text-base">
@@ -289,13 +294,13 @@ export default function RoiCalculator({ t, lang, onOpenQuote }) {
                   {/* Row 2: Raw Material Cost */}
                   <div className="flex items-center justify-between p-3 bg-white border-b border-slate-100">
                     <div className="flex items-center gap-2">
-                      <span className="w-5 h-5 rounded-full bg-rose-600 text-white flex items-center justify-center text-[11px] font-black">-</span>
+                      <span className="w-5 h-5 rounded-full bg-slate-600 text-white flex items-center justify-center text-[11px] font-black">-</span>
                       <div>
                         <span className="font-semibold text-slate-700">{data.rawCostTotal}</span>
                         <span className="block text-[10px] text-slate-400 font-medium">{lang === 'mr' ? 'गूळ, राजगिरा/मुरमुरा व गॅस' : lang === 'hi' ? 'गुड़, राजगिरा/मुरमुरा और गैस' : 'Jaggery, ingredients & gas'}</span>
                       </div>
                     </div>
-                    <span className="font-bold text-rose-700">
+                    <span className="font-bold text-slate-700">
                       - ₹{monthlyRawCost.toLocaleString()}
                     </span>
                   </div>
@@ -335,26 +340,28 @@ export default function RoiCalculator({ t, lang, onOpenQuote }) {
                   </div>
                 </div>
 
-                {/* Net Profit Summary Box */}
-                <div className="mt-4 p-4 rounded-xl bg-emerald-50 border-2 border-emerald-500">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-black uppercase text-emerald-900 tracking-wider">
+                {/* Net Profit Summary Box - Premium Slate & Amber Gold Theme */}
+                <div className="mt-4 p-5 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-950 to-brand-blue-950 text-white shadow-xl border border-slate-800 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-36 h-36 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
+                  
+                  <div className="relative z-10 flex items-center justify-between mb-2">
+                    <span className="text-xs font-black uppercase text-amber-400 tracking-wider">
                       {lang === 'mr' ? 'हातात उरणारा निव्वळ मासिक नफा:' : lang === 'hi' ? 'हाथ में आने वाला शुद्ध मासिक लाभ:' : 'Net In-Hand Monthly Profit:'}
                     </span>
-                    <span className="text-[11px] font-bold text-emerald-800 bg-white px-2 py-0.5 rounded border border-emerald-300">
+                    <span className="text-[11px] font-bold text-slate-200 bg-white/10 px-2.5 py-1 rounded-lg border border-white/15 backdrop-blur-xs">
                       {lang === 'mr' ? `दररोज ₹${dailyNetProfit.toLocaleString()} नफा` : lang === 'hi' ? `प्रतिदिन ₹${dailyNetProfit.toLocaleString()} लाभ` : `₹${dailyNetProfit.toLocaleString()}/day net`}
                     </span>
                   </div>
 
-                  <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-emerald-800 tracking-tight">
+                  <div className="relative z-10 text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
                     ₹{netMonthlyProfit.toLocaleString()}
-                    <span className="text-sm sm:text-base font-bold text-emerald-700 ml-1">
+                    <span className="text-sm sm:text-base font-bold text-amber-400 ml-1.5">
                       /{lang === 'mr' ? 'महिना' : lang === 'hi' ? 'माह' : 'mo'}*
                     </span>
                   </div>
 
-                  <p className="text-xs text-emerald-900 font-bold mt-1.5 flex items-center gap-1.5">
-                    <CheckCircle className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                  <p className="relative z-10 text-xs text-slate-300 font-medium mt-2 flex items-center gap-1.5">
+                    <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                     <span>{data.paybackMsg}</span>
                   </p>
                 </div>
@@ -365,7 +372,7 @@ export default function RoiCalculator({ t, lang, onOpenQuote }) {
                 <button
                   type="button"
                   onClick={triggerCelebrate}
-                  className="w-full inline-flex items-center justify-center gap-2.5 bg-brand-blue-700 hover:bg-brand-blue-800 text-white font-black py-3.5 px-5 rounded-xl shadow-md transition-all active:scale-[0.99] text-sm sm:text-base tracking-wide"
+                  className="w-full inline-flex items-center justify-center gap-2.5 bg-brand-blue-600 hover:bg-brand-blue-700 text-white font-black py-3.5 px-5 rounded-xl shadow-lg shadow-brand-blue-600/25 transition-all active:scale-[0.99] text-sm sm:text-base tracking-wide cursor-pointer"
                 >
                   <FileText className="w-5 h-5 text-amber-300" />
                   <span>{lang === 'mr' ? 'या हिशोबाचे कोटेशन व प्रोजेक्ट समरी मागवा' : lang === 'hi' ? 'इस हिसाब का कोटेशन व प्रोजेक्ट समरी मंगाएं' : 'Request Official Quote & Profit Summary'}</span>

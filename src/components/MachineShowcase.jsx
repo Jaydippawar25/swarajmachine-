@@ -45,9 +45,12 @@ function AnimatedCounter({ target, suffix = '', duration = 1200 }) {
   return <span>{val.toLocaleString()}{suffix}</span>;
 }
 
-export default function MachineShowcase({ t, lang, onOpenQuote }) {
+export default function MachineShowcase({ t, lang, onOpenQuote, specs, settings }) {
   const [activeMedia, setActiveMedia] = useState('tray'); // 'tray', 'front', 'video'
   const data = t.showcase;
+
+  const whatsappNumber = settings?.whatsappNumber || t.nav.whatsappNumber;
+  const phone = settings?.phone || t.nav.phone;
 
   const handleWhatsapp = () => {
     const text = lang === 'mr'
@@ -55,7 +58,7 @@ export default function MachineShowcase({ t, lang, onOpenQuote }) {
       : lang === 'hi'
       ? "नमस्ते Swaraj Machinery, मुझे राजगिरा और मुरमुरा लड्डू मेकिंग मशीन की पूरी जानकारी और फैक्टरी रेट चाहिए।"
       : "Hello Swaraj Machinery, please share complete specifications and direct factory price for the Rajgira & Murmura Laddu Making Machine.";
-    window.open(`https://wa.me/${t.nav.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (
@@ -99,7 +102,7 @@ export default function MachineShowcase({ t, lang, onOpenQuote }) {
             </button>
 
             <a
-              href={`tel:${t.nav.phone}`}
+              href={`tel:${phone}`}
               className="h-12 sm:h-14 w-full inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold px-4 rounded-2xl shadow-md transition text-sm whitespace-nowrap"
             >
               <PhoneCall className="w-4 h-4 text-amber-400 flex-shrink-0" />
@@ -111,89 +114,77 @@ export default function MachineShowcase({ t, lang, onOpenQuote }) {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5 mt-10 pt-8 border-t border-slate-200">
             
             {/* Card 1: 1000+ Speed */}
-            <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 overflow-hidden group">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-blue-600 to-sky-400 group-hover:h-1.5 transition-all" />
-              
-              <div className="flex items-center justify-between mb-2 sm:mb-3">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-blue-50 text-brand-blue-600 flex items-center justify-center font-black group-hover:scale-110 transition-transform">
-                  <Zap className="w-4 h-4 sm:w-5 sm:h-5 animate-pulse" />
+            <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-9 h-9 rounded-xl bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center font-bold">
+                  <Zap className="w-4 h-4 text-brand-blue-600" />
                 </div>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-brand-blue-700 border border-blue-100">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-ping" />
-                  <span>{lang === 'mr' ? 'हाय-स्पीड' : lang === 'hi' ? 'हाई-स्पीड' : 'High Speed'}</span>
+                <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 border border-slate-200/90 px-2.5 py-0.5 rounded-md">
+                  {lang === 'mr' ? 'हाय-स्पीड' : lang === 'hi' ? 'हाई-स्पीड' : 'High Speed'}
                 </span>
               </div>
 
-              <div className="text-2xl sm:text-4xl font-black text-brand-blue-600 tracking-tight">
+              <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight group-hover:text-brand-blue-600 transition-colors">
                 <AnimatedCounter target={1000} suffix="+" duration={1400} />
               </div>
-              <div className="text-xs sm:text-sm font-bold text-slate-800 mt-1 leading-snug">
+              <div className="text-xs sm:text-sm font-semibold text-slate-600 mt-1 leading-snug">
                 {t.hero.stat1Label}
               </div>
             </div>
 
             {/* Card 2: 80% Savings */}
-            <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 overflow-hidden group">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-400 group-hover:h-1.5 transition-all" />
-              
-              <div className="flex items-center justify-between mb-2 sm:mb-3">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-black group-hover:scale-110 transition-transform">
-                  <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 animate-bounce-gentle" />
+            <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
+                  <TrendingUp className="w-4 h-4 text-amber-600" />
                 </div>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-100">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-                  <span>{lang === 'mr' ? 'थेट बचत' : lang === 'hi' ? 'सीधी बचत' : 'Savings'}</span>
+                <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 border border-slate-200/90 px-2.5 py-0.5 rounded-md">
+                  {lang === 'mr' ? 'थेट बचत' : lang === 'hi' ? 'सीधी बचत' : 'Savings'}
                 </span>
               </div>
 
-              <div className="text-2xl sm:text-4xl font-black text-emerald-600 tracking-tight">
+              <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight group-hover:text-amber-600 transition-colors">
                 <AnimatedCounter target={80} suffix="%" duration={1200} />
               </div>
-              <div className="text-xs sm:text-sm font-bold text-slate-800 mt-1 leading-snug">
+              <div className="text-xs sm:text-sm font-semibold text-slate-600 mt-1 leading-snug">
                 {t.hero.stat2Label}
               </div>
             </div>
 
             {/* Card 3: SS 304 Steel */}
-            <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 overflow-hidden group">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-orange-400 group-hover:h-1.5 transition-all" />
-              
-              <div className="flex items-center justify-between mb-2 sm:mb-3">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-black group-hover:scale-110 transition-transform">
-                  <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500" />
+            <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-9 h-9 rounded-xl bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center font-bold">
+                  <ShieldCheck className="w-4 h-4 text-brand-blue-600" />
                 </div>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-100">
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                  <span>{lang === 'mr' ? 'फूड-ग्रेड' : lang === 'hi' ? 'फूड-ग्रेड' : 'Food Grade'}</span>
+                <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 border border-slate-200/90 px-2.5 py-0.5 rounded-md">
+                  {lang === 'mr' ? 'फूड-ग्रेड' : lang === 'hi' ? 'फूड-ग्रेड' : 'Food Grade'}
                 </span>
               </div>
 
-              <div className="text-2xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600 tracking-tight">
+              <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight group-hover:text-brand-blue-600 transition-colors">
                 {t.hero.stat3Val}
               </div>
-              <div className="text-xs sm:text-sm font-bold text-slate-800 mt-1 leading-snug">
+              <div className="text-xs sm:text-sm font-semibold text-slate-600 mt-1 leading-snug">
                 {t.hero.stat3Label}
               </div>
             </div>
 
             {/* Card 4: 220V Electricity */}
-            <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 overflow-hidden group">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 group-hover:h-1.5 transition-all" />
-              
-              <div className="flex items-center justify-between mb-2 sm:mb-3">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-black group-hover:scale-110 transition-transform">
-                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600 animate-pulse" />
+            <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
+                  <Sparkles className="w-4 h-4 text-amber-600" />
                 </div>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-100">
-                  <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-ping" />
-                  <span>{lang === 'mr' ? 'सिंगल फेज' : lang === 'hi' ? 'सिंगल फेज' : 'Single Phase'}</span>
+                <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 border border-slate-200/90 px-2.5 py-0.5 rounded-md">
+                  {lang === 'mr' ? 'सिंगल फेज' : lang === 'hi' ? 'सिंगल फेज' : 'Single Phase'}
                 </span>
               </div>
 
-              <div className="text-2xl sm:text-4xl font-black text-purple-600 tracking-tight">
+              <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight group-hover:text-amber-600 transition-colors">
                 {t.hero.stat4Val}
               </div>
-              <div className="text-xs sm:text-sm font-bold text-slate-800 mt-1 leading-snug">
+              <div className="text-xs sm:text-sm font-semibold text-slate-600 mt-1 leading-snug">
                 {t.hero.stat4Label}
               </div>
             </div>
@@ -350,9 +341,18 @@ export default function MachineShowcase({ t, lang, onOpenQuote }) {
                   <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center font-bold">
                     <Settings className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <h3 className="text-base sm:text-xl font-black text-slate-900">
-                    {data.specsTitle}
-                  </h3>
+                  <div>
+                    <h3 className="text-base sm:text-xl font-black text-slate-900">
+                      {data.specsTitle}
+                    </h3>
+                    {specs && (
+                      <span className="text-[11px] font-bold text-amber-700 block">
+                        {specs.priceOnRequest 
+                          ? (lang === 'mr' ? 'किंमत: विचारणेवर उपलब्ध' : lang === 'hi' ? 'कीमत: मांग पर उपलब्ध' : 'Price: On Request')
+                          : specs.priceDisplay ? `${lang === 'mr' ? 'किंमत:' : lang === 'hi' ? 'कीमत:' : 'Price:'} ${specs.priceDisplay}` : ''}
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-1 rounded-full">
                   VERIFIED SPECS
@@ -361,8 +361,8 @@ export default function MachineShowcase({ t, lang, onOpenQuote }) {
 
               {/* Specs Table List */}
               <div className="divide-y divide-slate-100">
-                {data.specs.map((item, idx) => (
-                  <div key={idx} className="py-2 sm:py-2.5 flex items-center justify-between gap-3 text-xs sm:text-sm">
+                {((specs?.items && specs.items.length > 0) ? specs.items : data.specs).map((item, idx) => (
+                  <div key={item.id || idx} className="py-2 sm:py-2.5 flex items-center justify-between gap-3 text-xs sm:text-sm">
                     <span className="text-slate-600 font-semibold">
                       {item.label}
                     </span>

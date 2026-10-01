@@ -6,7 +6,7 @@ import logoImg from '../../assets/logo.png';
 import toast from 'react-hot-toast';
 
 export default function Login() {
-  const [email, setEmail] = useState('admin@swarajmachine.com');
+  const [email, setEmail] = useState('mkenterprises2325@gmail.com');
   const [password, setPassword] = useState('Swaraj@2026');
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -58,7 +58,7 @@ export default function Login() {
   };
 
   const handleQuickFill = () => {
-    setEmail('admin@swarajmachine.com');
+    setEmail('mkenterprises2325@gmail.com');
     setPassword('Swaraj@2026');
     toast.success(adminLang === 'mr' ? 'मालक डेमो क्रेडेंशियल भरले गेले!' : 'Owner demo credentials filled!');
   };
@@ -199,7 +199,7 @@ export default function Login() {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="admin@swarajmachine.com"
+                      placeholder="mkenterprises2325@gmail.com"
                       required
                       className="w-full pl-10 pr-3.5 py-2.5 sm:py-3 bg-white border border-slate-300 rounded-xl text-slate-900 text-xs sm:text-sm placeholder-slate-400 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition"
                     />
@@ -298,7 +298,7 @@ export default function Login() {
                 type="email"
                 value={resetEmail}
                 onChange={(e) => setResetEmail(e.target.value)}
-                placeholder="admin@swarajmachine.com"
+                placeholder="mkenterprises2325@gmail.com"
                 required
                 className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-amber-400"
               />

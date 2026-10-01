@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { HelpCircle, ChevronDown } from 'lucide-react';
 
-export default function Faq({ t }) {
+export default function Faq({ t, lang, faqs }) {
   const [openIndex, setOpenIndex] = useState(0);
   const data = t.faq;
+
+  const dynamicList = (faqs?.[lang] || faqs?.hi || []).filter(f => f.published !== false);
+  const items = (dynamicList && dynamicList.length > 0) ? dynamicList : data.items;
 
   const toggle = (idx) => {
     setOpenIndex(openIndex === idx ? null : idx);
@@ -29,7 +32,7 @@ export default function Faq({ t }) {
 
         {/* Accordion List */}
         <div className="space-y-3">
-          {data.items.map((item, idx) => {
+          {items.map((item, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div

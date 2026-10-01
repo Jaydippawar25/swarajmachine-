@@ -1,23 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Sparkles, Save, Clock, Eye, EyeOff, Calendar, Flame, PartyPopper } from 'lucide-react';
+import { contentService, defaultOffers } from '../services/contentService';
 import { activityService } from '../services/activityService';
 import { useAuth } from '../context/AuthContext';
 import partyPopperImg from '../../assets/party-popper.png';
 import toast from 'react-hot-toast';
 
 export default function OffersManager() {
-  const [offerEnabled, setOfferEnabled] = useState(true);
-  const [prefix, setPrefix] = useState('धमाका ऑफर:');
-  const [offerText, setOfferText] = useState('महिला स्वयं सहायता समूह (SHG) व नए उद्यमियों के लिए सीधी फैक्टरी छूट!');
-  const [ctaText, setCtaText] = useState('ऑफर रेट पाएं');
-  const [discountPercent, setDiscountPercent] = useState('15% Factory Discount');
-  const [hasExpiry, setHasExpiry] = useState(false);
-  const [expiryDate, setExpiryDate] = useState('2026-10-31T23:59');
+  const [offerEnabled, setOfferEnabled] = useState(defaultOffers.enabled);
+  const [prefix, setPrefix] = useState(defaultOffers.prefix);
+  const [offerText, setOfferText] = useState(defaultOffers.offerText);
+  const [ctaText, setCtaText] = useState(defaultOffers.ctaText);
+  const [discountPercent, setDiscountPercent] = useState(defaultOffers.discountPercent);
+  const [hasExpiry, setHasExpiry] = useState(defaultOffers.hasExpiry);
+  const [expiryDate, setExpiryDate] = useState(defaultOffers.expiryDate);
+  const [isSaving, setIsSaving] = useState(false);
   const { user, at, adminLang } = useAuth();
 
+  useEffect(() => {
+    loadOffers();
+  }, []);
+
+  const loadOffers = async () => {
+    const data = await contentService.getOffers();
+    if (data) {
+      setOfferEnabled(data.enabled ?? true);
+      setPrefix(data.prefix || defaultOffers.prefix);
+      setOfferText(data.offerText || defaultOffers.offerText);
+      setCtaText(data.ctaText || defaultOffers.ctaText);
+      setDiscountPercent(data.discountPercent || defaultOffers.discountPercent);
+      setHasExpiry(data.hasExpiry ?? false);
+      setExpiryDate(data.expiryDate || defaultOffers.expiryDate);
+    }
+  };
+
   const handleSave = async () => {
-    await activityService.log('offer_update', `Updated urgent announcement offer banner settings`, user);
-    toast.success(adminLang === 'mr' ? 'ऑफर सेटिंग्ज सेव्ह झाल्या!' : adminLang === 'hi' ? 'ऑफर सेटिंग्स सेव हो गईं!' : 'Offer settings saved and active!');
+    setIsSaving(true);
+    try {
+      const offerData = {
+        enabled: offerEnabled,
+        prefix,
+        offerText,
+        ctaText,
+        discountPercent,
+        hasExpiry,
+        expiryDate,
+      };
+      await contentService.saveOffers(offerData);
+      await activityService.log('offer_update', `Updated urgent announcement offer banner settings: "${prefix} ${offerText}"`, user);
+      toast.success(adminLang === 'mr' ? 'ऑफर सेटिंग्ज सेव्ह झाल्या व वेबसाइटवर अपडेट झाल्या!' : adminLang === 'hi' ? 'ऑफर सेटिंग्स सेव हो गईं व वेबसाइट पर अपडेट हुईं!' : 'Offer settings saved and updated live!');
+    } catch (e) {
+      toast.error('Failed to save offer');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -35,10 +71,11 @@ export default function OffersManager() {
 
         <button
           onClick={handleSave}
-          className="inline-flex items-center gap-1.5 px-5 py-2 rounded-xl text-xs font-black bg-amber-400 hover:bg-amber-300 text-slate-950 transition shadow-sm"
+          disabled={isSaving}
+          className="inline-flex items-center gap-1.5 px-5 py-2 rounded-xl text-xs font-black bg-amber-400 hover:bg-amber-300 text-slate-950 transition shadow-sm disabled:opacity-50"
         >
           <Save className="w-4 h-4" />
-          <span>{at.saveOffer || 'Save Offer'}</span>
+          <span>{isSaving ? (adminLang === 'mr' ? 'सेव्ह होत आहे...' : 'Saving...') : (at.saveOffer || 'Save Offer')}</span>
         </button>
       </div>
 
@@ -47,7 +84,7 @@ export default function OffersManager() {
         <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
           {adminLang === 'mr' ? 'थेट बॅनर पूर्वावलोकन:' : adminLang === 'hi' ? 'लाइव बैनर पूर्वावलोकन:' : 'Live Banner Preview:'}
         </span>
-        <div className="relative overflow-hidden bg-slate-950 text-white border-b border-amber-500/25 py-2 px-3 text-xs rounded-xl shadow-lg">
+        <div className={`relative overflow-hidden bg-slate-950 text-white border-b border-amber-500/25 py-2 px-3 text-xs rounded-xl shadow-lg transition-opacity ${!offerEnabled ? 'opacity-40 grayscale' : ''}`}>
           <div className="flex items-center justify-between gap-2 max-w-4xl mx-auto">
             <div className="flex items-center gap-2">
               <img src={partyPopperImg} alt="Party popper" className="w-4 h-4 object-contain" />
@@ -68,6 +105,11 @@ export default function OffersManager() {
             </button>
           </div>
         </div>
+        {!offerEnabled && (
+          <p className="text-[11px] text-amber-600 font-bold">
+            ⚠️ {adminLang === 'mr' ? 'बॅनर सध्या लपवले आहे (वेबसाइटवर दिसणार नाही)' : 'Banner is currently disabled and hidden on website.'}
+          </p>
+        )}
       </div>
 
       {/* Offer Settings Form */}
@@ -81,11 +123,11 @@ export default function OffersManager() {
               type="checkbox"
               checked={offerEnabled}
               onChange={(e) => setOfferEnabled(e.target.checked)}
-              className="rounded text-amber-500"
+              className="rounded text-amber-500 w-4 h-4 cursor-pointer"
             />
             <span>
               {offerEnabled 
-                ? (adminLang === 'mr' ? 'बॅनर सक्रिय (दिसत आहे)' : adminLang === 'hi' ? 'बैनर सक्रिय (दिख रहा है)' : 'Banner Active (Visible)')
+                ? (adminLang === 'mr' ? 'बॅनर सक्रिय (वेबसाइटवर दिसेल)' : adminLang === 'hi' ? 'बैनर सक्रिय (दिखेगा)' : 'Banner Active (Visible on website)')
                 : (adminLang === 'mr' ? 'बॅनर लपवले आहे' : adminLang === 'hi' ? 'बैनर छुपा हुआ' : 'Banner Hidden')}
             </span>
           </label>
@@ -100,7 +142,7 @@ export default function OffersManager() {
               type="text"
               value={prefix}
               onChange={(e) => setPrefix(e.target.value)}
-              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold"
+              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold focus:bg-white focus:outline-none focus:border-amber-400"
             />
           </div>
 
@@ -112,7 +154,7 @@ export default function OffersManager() {
               type="text"
               value={offerText}
               onChange={(e) => setOfferText(e.target.value)}
-              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs"
+              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-amber-400"
             />
           </div>
 
@@ -124,7 +166,7 @@ export default function OffersManager() {
               type="text"
               value={ctaText}
               onChange={(e) => setCtaText(e.target.value)}
-              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-amber-600"
+              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-amber-600 focus:bg-white focus:outline-none focus:border-amber-400"
             />
           </div>
 
@@ -136,7 +178,7 @@ export default function OffersManager() {
               type="text"
               value={discountPercent}
               onChange={(e) => setDiscountPercent(e.target.value)}
-              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs"
+              className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-amber-400"
             />
           </div>
 

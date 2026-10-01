@@ -64,18 +64,41 @@ export default function Hero({ t, lang }) {
         {/* Main Product Name - Fully dynamic for Hindi, English & Marathi */}
         <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-normal leading-[1.3] sm:leading-[1.25] drop-shadow-2xl">
           {t.hero.title}{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-sky-300 to-amber-400 block sm:inline">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200 block sm:inline">
             {t.hero.titleHighlight}
           </span>
         </h1>
       </div>
 
+      {/* Inverted Semi-Circle Fade Divider (उलट अर्धसर्कल फेड - आत न जाता खाली वळणारा) */}
+      <div className="absolute -bottom-px left-0 right-0 pointer-events-none z-10 overflow-hidden leading-none select-none">
+        <svg 
+          viewBox="0 0 1440 100" 
+          fill="none" 
+          preserveAspectRatio="none" 
+          className="relative block w-full h-12 sm:h-16 md:h-20"
+        >
+          <defs>
+            <linearGradient id="heroInvertedCurveFade" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#f8fafc" stopOpacity="0" />
+              <stop offset="45%" stopColor="#f8fafc" stopOpacity="0.5" />
+              <stop offset="85%" stopColor="#f8fafc" stopOpacity="0.95" />
+              <stop offset="100%" stopColor="#f8fafc" stopOpacity="1" />
+            </linearGradient>
+          </defs>
+          <path 
+            d="M0,0 C450,95 990,95 1440,0 L1440,100 L0,100 Z" 
+            fill="url(#heroInvertedCurveFade)" 
+          />
+        </svg>
+      </div>
+
       {/* Scroll Down Indicator */}
       <a
         href="#machine-showcase"
-        className="absolute bottom-5 sm:bottom-7 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/80 hover:text-white transition group"
+        className="absolute bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/90 hover:text-white transition group"
       >
-        <span className="text-[11px] sm:text-xs font-bold tracking-wider bg-slate-900/75 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/15 shadow-lg">
+        <span className="text-[11px] sm:text-xs font-bold tracking-wider bg-slate-900/80 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/20 shadow-xl group-hover:border-amber-400/50 transition">
           {lang === 'mr' ? 'तपशील खाली पाहा' : lang === 'hi' ? 'विवरण नीचे देखें' : 'Explore Details'}
         </span>
         <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 animate-bounce text-amber-400" />

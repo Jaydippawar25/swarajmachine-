@@ -7,8 +7,8 @@ import toast from 'react-hot-toast';
 const INITIAL_USERS = [
   {
     id: 'user-1',
-    name: 'Swaraj Factory Owner',
-    email: 'admin@swarajmachine.com',
+    name: 'MK Enterprises Owner',
+    email: 'mkenterprises2325@gmail.com',
     role: 'owner',
     status: 'active',
     lastLogin: 'Active Now'
@@ -156,7 +156,7 @@ export default function UserManager() {
                   type="email"
                   value={newEmail}
                   onChange={(e) => setNewEmail(e.target.value)}
-                  placeholder="user@swarajmachine.com"
+                  placeholder="user@example.com"
                   required
                   className="w-full p-2 bg-slate-50 border border-slate-200 rounded-xl"
                 />

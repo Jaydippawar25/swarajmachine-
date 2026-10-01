@@ -9,7 +9,7 @@ export const activityService = {
       action,
       details,
       userId: user?.uid || 'unknown',
-      userEmail: user?.email || 'admin@swarajmachine.com',
+      userEmail: user?.email || 'mkenterprises2325@gmail.com',
       userRole: user?.role || 'owner',
       timestamp: new Date().toISOString(),
     };

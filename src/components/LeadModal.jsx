@@ -84,7 +84,7 @@ export default function LeadModal({ isOpen, onClose, t, lang }) {
         onClick={(e) => e.stopPropagation()}
         className="bg-white rounded-3xl max-w-md w-full p-5 sm:p-7 shadow-2xl border border-slate-100 relative overflow-hidden max-h-[92vh] overflow-y-auto"
       >
-        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-blue-600 via-amber-500 to-emerald-500" />
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-blue-600 to-amber-500" />
 
         <button
           type="button"
@@ -180,7 +180,7 @@ export default function LeadModal({ isOpen, onClose, t, lang }) {
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition text-sm"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-brand-blue-600 hover:bg-brand-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-brand-blue-600/20 transition text-sm"
                 >
                   <Send className="w-4 h-4" />
                   <span>{t.modal.submitBtn}</span>
