@@ -26,7 +26,14 @@ export default function LeadModal({ isOpen, onClose, t, lang }) {
       return;
     }
 
-    // 2. Rate limit check (30 seconds)
+    // 2. Validate 10-digit mobile number
+    const cleanPhone = (formData.phone || '').replace(/\D/g, '');
+    if (cleanPhone.length < 10) {
+      alert(lang === 'mr' ? 'कृपया योग्य १० अंकी मोबाईल नंबर टाका.' : lang === 'hi' ? 'कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें।' : 'Please enter a valid 10-digit mobile number.');
+      return;
+    }
+
+    // 3. Rate limit check (30 seconds)
     const lastSub = localStorage.getItem('swaraj_last_lead_sub');
     if (lastSub && Date.now() - parseInt(lastSub, 10) < 30000) {
       // Allow but skip duplicate warning to not confuse genuine customer
@@ -34,7 +41,7 @@ export default function LeadModal({ isOpen, onClose, t, lang }) {
       localStorage.setItem('swaraj_last_lead_sub', Date.now().toString());
     }
 
-    // 3. Save Lead to CRM / Firestore (Never blocks WhatsApp)
+    // 4. Save Lead to CRM / Firestore (Never blocks WhatsApp)
     try {
       let bType = 'startup';
       const pLower = (formData.purpose || '').toLowerCase();
@@ -51,7 +58,7 @@ export default function LeadModal({ isOpen, onClose, t, lang }) {
         state: 'India',
         businessType: bType,
         language: lang,
-        source: 'Quotation Modal',
+        source: 'WhatsApp Lead Form',
         notes: `Purpose: ${formData.purpose}`
       });
     } catch (err) {
@@ -65,17 +72,19 @@ export default function LeadModal({ isOpen, onClose, t, lang }) {
       origin: { y: 0.6 }
     });
 
-    const msg = lang === 'mr'
-      ? `*नवीन कोटेशन चौकशी (SWARAJ लाडू मेकिंग मशीन)*\n\n👤 *नाव:* ${formData.name}\n📱 *मोबाईल:* ${formData.phone}\n📍 *गाव/शहर:* ${formData.city}\n💼 *उद्देश:* ${formData.purpose}\n\nकृपया मला थेट फॅक्टरी किंमत, सवलत आणि व्हिडिओ पाठवा.`
-      : lang === 'hi'
-      ? `*नया कोटेशन अनुरोध (SWARAJ लड्डू मेकिंग मशीन)*\n\n👤 *नाम:* ${formData.name}\n📱 *फ़ोन:* ${formData.phone}\n📍 *शहर/गाँव:* ${formData.city}\n💼 *व्यावसायिक उद्देश्य:* ${formData.purpose}\n\nकृपया मुझे सीधी फैक्टरी कीमत और वीडियो डेमो भेजें।`
-      : `*New Quotation Inquiry (SWARAJ Laddu Making Machine)*\n\n👤 *Name:* ${formData.name}\n📱 *Phone:* ${formData.phone}\n📍 *City:* ${formData.city}\n💼 *Setup:* ${formData.purpose}\n\nPlease share official factory price quote and demo video.`;
+    const whatsappNumber = t?.nav?.whatsappNumber || '917447271253';
 
-    const waUrl = `https://wa.me/${t.nav.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+    const msg = lang === 'mr'
+      ? `*नमस्कार Swaraj Machinery,*\n\nमला राजगिरा आणि मुरमुरा लाडू मेकिंग मशीनबद्दल माहिती व फॅक्टरी कोटेशन हवे आहे.\n\n👤 *नाव:* ${formData.name}\n📱 *मोबाईल:* ${formData.phone}\n📍 *गाव/शहर:* ${formData.city}\n💼 *व्यवसाय प्रकार:* ${formData.purpose}\n\nकृपया मला थेट फॅक्टरी किंमत, सवलत आणि व्हिडिओ डेमो पाठवा.`
+      : lang === 'hi'
+      ? `*नमस्ते Swaraj Machinery,*\n\nमुझे राजगिरा और मुरमुरा लड्डू मेकिंग मशीन की जानकारी और फैक्टरी कोटेशन चाहिए।\n\n👤 *नाम:* ${formData.name}\n📱 *फ़ोन:* ${formData.phone}\n📍 *शहर/गाँव:* ${formData.city}\n💼 *व्यावसायिक उद्देश्य:* ${formData.purpose}\n\nकृपया मुझे सीधी फैक्टरी कीमत और वीडियो डेमो भेजें।`
+      : `*Hello Swaraj Machinery,*\n\nI need information and factory quote for the Laddu Making Machine.\n\n👤 *Name:* ${formData.name}\n📱 *Phone:* ${formData.phone}\n📍 *City:* ${formData.city}\n💼 *Setup:* ${formData.purpose}\n\nPlease share official factory price quote and demo video.`;
+
+    const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
 
     setTimeout(() => {
       window.open(waUrl, '_blank');
-    }, 700);
+    }, 600);
   };
 
   return (
