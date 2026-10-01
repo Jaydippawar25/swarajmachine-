@@ -106,16 +106,20 @@ export default function LeadModal({ isOpen, onClose, t, lang }) {
 
         {!submitted ? (
           <div>
-            <div className="flex items-center gap-1.5 text-xs font-bold text-brand-blue-600 mb-1.5">
-              <Sparkles className="w-4 h-4 text-amber-500" />
-              <span>{lang === 'mr' ? 'थेट फॅक्टरी किंमत कोटेशन' : lang === 'hi' ? 'सीधी फैक्टरी कीमत कोटेशन' : 'DIRECT FACTORY PRICE QUOTE'}</span>
+            <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full w-fit mb-2 shadow-xs">
+              <WhatsAppIcon className="w-3.5 h-3.5 fill-emerald-600" />
+              <span>{lang === 'mr' ? 'थेट WhatsApp कोटेशन व डेमो' : lang === 'hi' ? 'सीधा WhatsApp कोटेशन व डेमो' : 'Direct WhatsApp Quote & Demo'}</span>
             </div>
 
             <h3 className="text-lg sm:text-xl font-black text-slate-900 leading-tight">
               {t.modal.title}
             </h3>
-            <p className="text-slate-600 text-xs mt-1">
-              {t.modal.subtitle}
+            <p className="text-slate-600 text-xs mt-1 leading-relaxed">
+              {lang === 'mr'
+                ? 'खालील साधी माहिती भरा, सबमिट करताच थेट WhatsApp वर संपूर्ण माहिती व व्हिडिओ मिळेल.'
+                : lang === 'hi'
+                ? 'कृपया नीचे दी गई जानकारी भरें, सबमिट करते ही सीधे WhatsApp पर कोटेशन व वीडियो मिलेगा।'
+                : 'Fill this quick form to instantly receive official pricing & demo video on WhatsApp.'}
             </p>
 
             <form onSubmit={handleSubmit} className="mt-5 space-y-3.5">
@@ -131,7 +135,7 @@ export default function LeadModal({ isOpen, onClose, t, lang }) {
               />
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">
-                  {t.modal.nameLabel}
+                  {t.modal.nameLabel} *
                 </label>
                 <input
                   type="text"
@@ -145,21 +149,22 @@ export default function LeadModal({ isOpen, onClose, t, lang }) {
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">
-                  {t.modal.phoneLabel}
+                  {t.modal.phoneLabel} (१० अंकी) *
                 </label>
                 <input
                   type="tel"
                   required
+                  maxLength={10}
                   placeholder={t.modal.phonePlaceholder}
                   value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '') })}
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-brand-blue-500 text-sm font-medium outline-none transition"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">
-                  {t.modal.cityLabel}
+                  {t.modal.cityLabel} *
                 </label>
                 <input
                   type="text"
@@ -189,23 +194,17 @@ export default function LeadModal({ isOpen, onClose, t, lang }) {
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-brand-blue-600 hover:bg-brand-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-brand-blue-600/20 transition text-sm"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] active:scale-95 text-white font-black py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-500/25 transition-all text-sm cursor-pointer"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>{t.modal.submitBtn}</span>
+                  <WhatsAppIcon className="w-5 h-5 fill-white" />
+                  <span>
+                    {lang === 'mr' 
+                      ? 'सबमिट करा व WhatsApp सुरू करा' 
+                      : lang === 'hi' 
+                      ? 'सबमिट करें और WhatsApp शुरू करें' 
+                      : 'Submit & Open WhatsApp'}
+                  </span>
                 </button>
-              </div>
-
-              <div className="text-center pt-1">
-                <a
-                  href={`https://wa.me/${t.nav.whatsappNumber}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600 hover:text-emerald-700"
-                >
-                  <WhatsAppIcon className="w-4 h-4 fill-emerald-600" />
-                  <span>{t.modal.directWhatsapp}</span>
-                </a>
               </div>
             </form>
           </div>
