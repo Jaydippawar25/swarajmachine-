@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { X, Send, Sparkles, CheckCircle2 } from 'lucide-react';
-import WhatsAppIcon from './WhatsAppIcon';
+import { X, User, MapPin, Building2, ChevronDown, ArrowRight, Lock, CheckCircle2, FileText } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { leadService } from '../admin/services/leadService';
 
@@ -36,7 +35,7 @@ export default function LeadModal({ isOpen, onClose, t, lang }) {
     // 3. Rate limit check (30 seconds)
     const lastSub = localStorage.getItem('swaraj_last_lead_sub');
     if (lastSub && Date.now() - parseInt(lastSub, 10) < 30000) {
-      // Allow but skip duplicate warning to not confuse genuine customer
+      // Allow but skip duplicate warning
     } else {
       localStorage.setItem('swaraj_last_lead_sub', Date.now().toString());
     }
@@ -88,17 +87,16 @@ export default function LeadModal({ isOpen, onClose, t, lang }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/75 backdrop-blur-sm animate-in fade-in duration-200">
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white rounded-3xl max-w-md w-full p-5 sm:p-7 shadow-2xl border border-slate-100 relative overflow-hidden max-h-[92vh] overflow-y-auto"
+        className="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl shadow-slate-900/20 border border-slate-200 relative max-h-[92vh] overflow-y-auto"
       >
-        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-blue-600 to-amber-500" />
-
+        {/* Clean Close Button */}
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 p-1.5 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100"
+          className="absolute top-5 right-5 p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition cursor-pointer"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
@@ -106,23 +104,24 @@ export default function LeadModal({ isOpen, onClose, t, lang }) {
 
         {!submitted ? (
           <div>
-            <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full w-fit mb-2 shadow-xs">
-              <WhatsAppIcon className="w-3.5 h-3.5 fill-emerald-600" />
-              <span>{lang === 'mr' ? 'थेट WhatsApp कोटेशन व डेमो' : lang === 'hi' ? 'सीधा WhatsApp कोटेशन व डेमो' : 'Direct WhatsApp Quote & Demo'}</span>
+            {/* Unified Professional Header Badge */}
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-blue-700 bg-brand-blue-50 border border-brand-blue-200/80 px-3 py-1 rounded-full mb-3 shadow-xs">
+              <FileText className="w-3.5 h-3.5 text-brand-blue-600" />
+              <span>{lang === 'mr' ? 'थेट फॅक्टरी कोटेशन' : lang === 'hi' ? 'सीधा फैक्टरी कोटेशन' : 'Direct Factory Quotation'}</span>
             </div>
 
-            <h3 className="text-lg sm:text-xl font-black text-slate-900 leading-tight">
+            <h3 className="text-xl sm:text-2xl font-black text-slate-900 leading-snug tracking-tight">
               {t.modal.title}
             </h3>
-            <p className="text-slate-600 text-xs mt-1 leading-relaxed">
+            <p className="text-slate-500 text-xs sm:text-sm mt-1.5 leading-relaxed">
               {lang === 'mr'
-                ? 'खालील साधी माहिती भरा, सबमिट करताच थेट WhatsApp वर संपूर्ण माहिती व व्हिडिओ मिळेल.'
+                ? 'खालील माहिती भरा, सबमिट करताच त्वरित WhatsApp वर कोटेशन आणि व्हिडिओ डेमो मिळेल:'
                 : lang === 'hi'
-                ? 'कृपया नीचे दी गई जानकारी भरें, सबमिट करते ही सीधे WhatsApp पर कोटेशन व वीडियो मिलेगा।'
-                : 'Fill this quick form to instantly receive official pricing & demo video on WhatsApp.'}
+                ? 'नीचे अपनी जानकारी भरें, सबमिट करते ही सीधे WhatsApp पर कोटेशन और वीडियो डेमो मिलेगा:'
+                : 'Fill in your details below to instantly receive quotation & video demo on WhatsApp:'}
             </p>
 
-            <form onSubmit={handleSubmit} className="mt-5 space-y-3.5">
+            <form onSubmit={handleSubmit} className="mt-6 space-y-4">
               {/* Invisible spam prevention honeypot */}
               <input
                 type="text"
@@ -133,97 +132,130 @@ export default function LeadModal({ isOpen, onClose, t, lang }) {
                 autoComplete="off"
                 className="hidden"
               />
+
+              {/* Name Field */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  {t.modal.nameLabel} *
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  {t.modal.nameLabel}
                 </label>
-                <input
-                  type="text"
-                  required
-                  placeholder={t.modal.namePlaceholder}
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-brand-blue-500 text-sm font-medium outline-none transition"
-                />
+                <div className="relative flex items-center">
+                  <User className="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none" />
+                  <input
+                    type="text"
+                    required
+                    placeholder={t.modal.namePlaceholder}
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full pl-10 pr-3.5 py-2.5 sm:py-3 rounded-xl bg-slate-50/70 border border-slate-200 hover:border-slate-300 focus:border-brand-blue-600 focus:bg-white focus:ring-3 focus:ring-brand-blue-500/10 text-sm font-medium text-slate-900 placeholder:text-slate-400 outline-none transition"
+                  />
+                </div>
               </div>
 
+              {/* Phone Field */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  {t.modal.phoneLabel} (१० अंकी) *
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  {t.modal.phoneLabel}
                 </label>
-                <input
-                  type="tel"
-                  required
-                  maxLength={10}
-                  placeholder={t.modal.phonePlaceholder}
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '') })}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-brand-blue-500 text-sm font-medium outline-none transition"
-                />
+                <div className="relative flex items-center">
+                  <span className="absolute left-3.5 text-xs font-bold text-slate-500 select-none pr-2 border-r border-slate-200">
+                    +91
+                  </span>
+                  <input
+                    type="tel"
+                    required
+                    maxLength={10}
+                    placeholder={t.modal.phonePlaceholder}
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '') })}
+                    className="w-full pl-14 pr-3.5 py-2.5 sm:py-3 rounded-xl bg-slate-50/70 border border-slate-200 hover:border-slate-300 focus:border-brand-blue-600 focus:bg-white focus:ring-3 focus:ring-brand-blue-500/10 text-sm font-medium text-slate-900 placeholder:text-slate-400 outline-none transition tracking-wide"
+                  />
+                </div>
               </div>
 
+              {/* City Field */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  {t.modal.cityLabel} *
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  {t.modal.cityLabel}
                 </label>
-                <input
-                  type="text"
-                  required
-                  placeholder={t.modal.cityPlaceholder}
-                  value={formData.city}
-                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-brand-blue-500 text-sm font-medium outline-none transition"
-                />
+                <div className="relative flex items-center">
+                  <MapPin className="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none" />
+                  <input
+                    type="text"
+                    required
+                    placeholder={t.modal.cityPlaceholder}
+                    value={formData.city}
+                    onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                    className="w-full pl-10 pr-3.5 py-2.5 sm:py-3 rounded-xl bg-slate-50/70 border border-slate-200 hover:border-slate-300 focus:border-brand-blue-600 focus:bg-white focus:ring-3 focus:ring-brand-blue-500/10 text-sm font-medium text-slate-900 placeholder:text-slate-400 outline-none transition"
+                  />
+                </div>
               </div>
 
+              {/* Purpose Dropdown */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                   {t.modal.purposeLabel}
                 </label>
-                <select
-                  value={formData.purpose}
-                  onChange={(e) => setFormData({ ...formData, purpose: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-brand-blue-500 text-sm font-medium outline-none transition bg-white"
-                >
-                  {t.modal.purposeOptions.map((opt, i) => (
-                    <option key={i} value={opt}>{opt}</option>
-                  ))}
-                </select>
+                <div className="relative flex items-center">
+                  <Building2 className="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none" />
+                  <select
+                    value={formData.purpose}
+                    onChange={(e) => setFormData({ ...formData, purpose: e.target.value })}
+                    className="w-full pl-10 pr-9 py-2.5 sm:py-3 rounded-xl bg-slate-50/70 border border-slate-200 hover:border-slate-300 focus:border-brand-blue-600 focus:bg-white focus:ring-3 focus:ring-brand-blue-500/10 text-sm font-medium text-slate-900 outline-none transition appearance-none cursor-pointer"
+                  >
+                    {t.modal.purposeOptions.map((opt, i) => (
+                      <option key={i} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                  <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 pointer-events-none" />
+                </div>
               </div>
 
+              {/* Unified Primary Button */}
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] active:scale-95 text-white font-black py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-500/25 transition-all text-sm cursor-pointer"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-brand-blue-600 hover:bg-brand-blue-700 active:scale-[0.98] text-white font-black py-3.5 px-4 rounded-xl shadow-lg shadow-brand-blue-600/25 transition-all text-sm cursor-pointer"
                 >
-                  <WhatsAppIcon className="w-5 h-5 fill-white" />
                   <span>
                     {lang === 'mr' 
-                      ? 'सबमिट करा व WhatsApp सुरू करा' 
+                      ? 'कोटेशन व व्हिडिओ WhatsApp वर मिळवा' 
                       : lang === 'hi' 
-                      ? 'सबमिट करें और WhatsApp शुरू करें' 
-                      : 'Submit & Open WhatsApp'}
+                      ? 'कोटेशन व वीडियो WhatsApp पर पाएं' 
+                      : 'Get Quotation & Video on WhatsApp'}
                   </span>
+                  <ArrowRight className="w-4 h-4" />
                 </button>
+              </div>
+
+              {/* Reassuring Single-Tone Trust Footer */}
+              <div className="flex items-center justify-center gap-1.5 pt-1 text-[11px] font-medium text-slate-600">
+                <Lock className="w-3.5 h-3.5 text-slate-500" />
+                <span>
+                  {lang === 'mr' 
+                    ? '१००% मोफत कोटेशन • तुमची माहिती सुरक्षित राहील' 
+                    : lang === 'hi' 
+                    ? '100% नि:शुल्क कोटेशन • आपकी जानकारी सुरक्षित है' 
+                    : '100% Free Quote • Your information is strictly confidential'}
+                </span>
               </div>
             </form>
           </div>
         ) : (
           <div className="text-center py-6 space-y-3">
-            <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-2">
-              <CheckCircle2 className="w-8 h-8" />
+            <div className="w-14 h-14 rounded-2xl bg-brand-blue-50 text-brand-blue-600 border border-brand-blue-200 flex items-center justify-center mx-auto mb-2">
+              <CheckCircle2 className="w-7 h-7" />
             </div>
             <h3 className="text-xl font-black text-slate-900">
               {t.modal.successTitle}
             </h3>
-            <p className="text-slate-600 text-xs max-w-xs mx-auto leading-relaxed">
+            <p className="text-slate-500 text-xs sm:text-sm max-w-xs mx-auto leading-relaxed">
               {t.modal.successDesc}
             </p>
             <div className="pt-3">
               <button
                 type="button"
                 onClick={onClose}
-                className="bg-slate-900 text-white font-bold px-5 py-2 rounded-xl text-xs hover:bg-slate-800 transition"
+                className="bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition cursor-pointer"
               >
                 {lang === 'mr' ? 'बंद करा (Close)' : lang === 'hi' ? 'बंद करें (Close)' : 'Close'}
               </button>
