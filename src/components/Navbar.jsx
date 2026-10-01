@@ -41,12 +41,9 @@ export default function Navbar({ lang, setLang, t, onOpenQuote, offers, settings
   const offerCta = offers?.ctaText || t.nav.offerCta;
 
   const handleWhatsapp = () => {
-    const text = lang === 'mr'
-      ? "नमस्कार Swaraj Machinery, मला राजगिरा आणि मुरमुरा लाडू मेकिंग मशीनचे संपूर्ण तपशील आणि थेट फॅक्टरी कोटेशन हवे आहे."
-      : lang === 'hi'
-      ? "नमस्ते Swaraj Machinery, मुझे राजगिरा और मुरमुरा लड्डू मेकिंग मशीन की पूरी जानकारी और फैक्टरी रेट चाहिए।"
-      : "Hello Swaraj Machinery, please share complete specifications and factory price quotation for the Laddu Making Machine.";
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
+    if (onOpenQuote) {
+      onOpenQuote();
+    }
   };
 
   return (
