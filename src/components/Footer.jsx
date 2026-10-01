@@ -72,14 +72,13 @@ export default function Footer({ t, lang, onOpenQuote, settings }) {
               </li>
               <li className="flex items-center gap-2">
                 <WhatsAppIcon className="w-4 h-4 text-amber-400 flex-shrink-0 fill-current" />
-                <a
-                  href={`https://wa.me/${whatsappNumber}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition font-bold text-white"
+                <button
+                  type="button"
+                  onClick={onOpenQuote}
+                  className="hover:text-white transition font-bold text-white text-left cursor-pointer"
                 >
                   WhatsApp: {phone}
-                </a>
+                </button>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-amber-400 flex-shrink-0" />
