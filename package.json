@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:sync": "node scripts/auto-sync.js & vite",
+    "auto-sync": "node scripts/auto-sync.js",
     "build": "vite build",
     "preview": "vite preview"
   },
