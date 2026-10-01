@@ -7,10 +7,10 @@ export default function FloatingWhatsapp({ t, lang, onOpenQuote, settings }) {
   const whatsappNumber = settings?.whatsappNumber || t.nav.whatsappNumber;
 
   const handleChat = () => {
-    const text = lang === 'mr'
-      ? "नमस्कार Swaraj Machinery, मला राजगिरा आणि मुरमुरा लाडू मेकिंग मशीनबद्दल माहिती हवी आहे."
-      : "नमस्ते Swaraj Machinery, मुझे राजगिरा और मुरमुरा लड्डू मेकिंग मशीन की जानकारी चाहिए।";
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
+    // Open lead capture form before redirecting to WhatsApp
+    if (onOpenQuote) {
+      onOpenQuote();
+    }
   };
 
   return (
