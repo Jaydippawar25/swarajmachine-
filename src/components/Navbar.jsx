@@ -50,37 +50,34 @@ export default function Navbar({ lang, setLang, t, onOpenQuote, offers, settings
     <>
       {/* Top Urgent Offer Announcement Bar */}
       {showOfferBanner && (
-        <div className="relative overflow-hidden bg-slate-950 text-white border-b border-amber-500/25 z-50 py-1.5 px-3 text-xs">
-          <div className="max-w-[1440px] mx-auto flex items-center justify-between sm:justify-center gap-2">
+        <div className="relative overflow-hidden bg-slate-950 text-white border-b border-amber-500/25 z-50 py-1.5 px-3 sm:px-4 text-xs">
+          <div className="max-w-[1440px] mx-auto flex items-center justify-between gap-2 sm:gap-4">
             <div 
               onClick={onOpenQuote}
-              className="flex items-center gap-2 cursor-pointer hover:text-amber-300 transition truncate"
+              className="flex items-center gap-2 min-w-0 cursor-pointer hover:text-amber-300 transition"
             >
-              <img 
-                src={partyPopperImg} 
-                alt="Party popper" 
-                className="w-4 h-4 sm:w-5 sm:h-5 object-contain flex-shrink-0" 
-              />
-              <span className="font-black text-amber-400 uppercase tracking-wide flex-shrink-0">
-                {offerPrefix}
+              {/* Clearly Visible NEW Badge with Speaker Icon */}
+              <div className="inline-flex items-center gap-1 bg-amber-400 text-slate-950 font-black text-[10px] sm:text-[11px] px-2 py-0.5 rounded-md uppercase tracking-wider flex-shrink-0 shadow-xs">
+                <span>📢</span>
+                <span>NEW</span>
+              </div>
+              <span className="text-slate-500 select-none hidden sm:inline">|</span>
+
+              {/* Announcement Text */}
+              <span className="text-slate-200 text-[11px] sm:text-xs font-medium truncate">
+                <span>आता अधिक प्रभावी उत्पादनासाठी — स्वराज मशीनरीची नवीन आधुनिक मॉडेल्स उपलब्ध!</span>
+                <span className="hidden md:inline"> &nbsp;|&nbsp; 🚚 संपूर्ण महाराष्ट्र होम डिलिव्हरी व इंस्टॉलेशन सुविधा</span>
               </span>
-              <span className="text-slate-200 hidden sm:inline truncate">
-                {offerText}
-              </span>
-              <img 
-                src={partyPopperImg} 
-                alt="Party popper" 
-                className="w-4 h-4 sm:w-5 sm:h-5 object-contain flex-shrink-0 -scale-x-100" 
-              />
             </div>
 
+            {/* Clear Yellow/Orange "अधिक माहिती →" Button */}
             <button
               type="button"
               onClick={onOpenQuote}
-              className="inline-flex items-center gap-1 bg-amber-400 hover:bg-amber-300 text-slate-950 px-2.5 py-0.5 rounded-full text-[11px] font-black transition flex-shrink-0 cursor-pointer"
+              className="inline-flex items-center gap-1 bg-amber-400 hover:bg-amber-300 active:scale-95 text-slate-950 px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-black transition-all flex-shrink-0 shadow-xs cursor-pointer whitespace-nowrap"
             >
-              <span>{offerCta}</span>
-              <ArrowRight className="w-3 h-3" />
+              <span>अधिक माहिती</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
