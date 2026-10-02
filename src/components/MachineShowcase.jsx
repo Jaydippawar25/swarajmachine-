@@ -106,91 +106,97 @@ export default function MachineShowcase({ t, lang, onOpenQuote, specs, settings 
               <span>{t.hero.ctaCall}</span>
             </a>
           </div>
-
-          {/* 4 Animated Key Metrics Highlights */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5 mt-10 pt-8 border-t border-slate-200">
-            
-            {/* Card 1: 1000+ Speed */}
-            <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="flex items-center justify-between mb-3">
-                <div className="w-9 h-9 rounded-xl bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center font-bold">
-                  <Zap className="w-4 h-4 text-brand-blue-600" />
-                </div>
-                <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 border border-slate-200/90 px-2.5 py-0.5 rounded-md">
-                  {lang === 'mr' ? 'हाय-स्पीड' : lang === 'hi' ? 'हाई-स्पीड' : 'High Speed'}
-                </span>
-              </div>
-
-              <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight group-hover:text-brand-blue-600 transition-colors">
-                <AnimatedCounter target={1000} suffix="+" duration={1400} />
-              </div>
-              <div className="text-xs sm:text-sm font-semibold text-slate-600 mt-1 leading-snug">
-                {t.hero.stat1Label}
-              </div>
-            </div>
-
-            {/* Card 2: 80% Savings */}
-            <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="flex items-center justify-between mb-3">
-                <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
-                  <TrendingUp className="w-4 h-4 text-amber-600" />
-                </div>
-                <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 border border-slate-200/90 px-2.5 py-0.5 rounded-md">
-                  {lang === 'mr' ? 'थेट बचत' : lang === 'hi' ? 'सीधी बचत' : 'Savings'}
-                </span>
-              </div>
-
-              <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight group-hover:text-amber-600 transition-colors">
-                <AnimatedCounter target={80} suffix="%" duration={1200} />
-              </div>
-              <div className="text-xs sm:text-sm font-semibold text-slate-600 mt-1 leading-snug">
-                {t.hero.stat2Label}
-              </div>
-            </div>
-
-            {/* Card 3: SS 304 Steel */}
-            <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="flex items-center justify-between mb-3">
-                <div className="w-9 h-9 rounded-xl bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center font-bold">
-                  <ShieldCheck className="w-4 h-4 text-brand-blue-600" />
-                </div>
-                <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 border border-slate-200/90 px-2.5 py-0.5 rounded-md">
-                  {lang === 'mr' ? 'फूड-ग्रेड' : lang === 'hi' ? 'फूड-ग्रेड' : 'Food Grade'}
-                </span>
-              </div>
-
-              <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight group-hover:text-brand-blue-600 transition-colors">
-                {t.hero.stat3Val}
-              </div>
-              <div className="text-xs sm:text-sm font-semibold text-slate-600 mt-1 leading-snug">
-                {t.hero.stat3Label}
-              </div>
-            </div>
-
-            {/* Card 4: 220V Electricity */}
-            <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="flex items-center justify-between mb-3">
-                <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
-                  <Sparkles className="w-4 h-4 text-amber-600" />
-                </div>
-                <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 border border-slate-200/90 px-2.5 py-0.5 rounded-md">
-                  {lang === 'mr' ? 'सिंगल फेज' : lang === 'hi' ? 'सिंगल फेज' : 'Single Phase'}
-                </span>
-              </div>
-
-              <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight group-hover:text-amber-600 transition-colors">
-                {t.hero.stat4Val}
-              </div>
-              <div className="text-xs sm:text-sm font-semibold text-slate-600 mt-1 leading-snug">
-                {t.hero.stat4Label}
-              </div>
-            </div>
-
-          </div>
         </div>
 
+        {/* Top Divider Line - Perfectly Symmetrical & Aligned */}
+        <div className="w-full max-w-5xl mx-auto border-t border-slate-200 my-10 sm:my-12" />
+
+        {/* 4 Key Metrics Highlights (Framed Symmetrically) */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 max-w-5xl mx-auto">
+          
+          {/* Card 1: 1000+ Speed */}
+          <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-300 hover:-translate-y-1 group">
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-9 h-9 rounded-xl bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center font-bold">
+                <Zap className="w-4 h-4 text-brand-blue-600" />
+              </div>
+              <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 border border-slate-200/90 px-2.5 py-0.5 rounded-md">
+                {lang === 'mr' ? 'हाय-स्पीड' : lang === 'hi' ? 'हाई-स्पीड' : 'High Speed'}
+              </span>
+            </div>
+
+            <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight group-hover:text-brand-blue-600 transition-colors">
+              <AnimatedCounter target={1000} suffix="+" duration={1400} />
+            </div>
+            <div className="text-xs sm:text-sm font-semibold text-slate-600 mt-1 leading-snug">
+              {t.hero.stat1Label}
+            </div>
+          </div>
+
+          {/* Card 2: 80% Savings */}
+          <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-300 hover:-translate-y-1 group">
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
+                <TrendingUp className="w-4 h-4 text-amber-600" />
+              </div>
+              <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 border border-slate-200/90 px-2.5 py-0.5 rounded-md">
+                {lang === 'mr' ? 'थेट बचत' : lang === 'hi' ? 'सीधी बचत' : 'Savings'}
+              </span>
+            </div>
+
+            <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight group-hover:text-amber-600 transition-colors">
+              <AnimatedCounter target={80} suffix="%" duration={1200} />
+            </div>
+            <div className="text-xs sm:text-sm font-semibold text-slate-600 mt-1 leading-snug">
+              {t.hero.stat2Label}
+            </div>
+          </div>
+
+          {/* Card 3: SS 304 Steel */}
+          <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-300 hover:-translate-y-1 group">
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-9 h-9 rounded-xl bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center font-bold">
+                <ShieldCheck className="w-4 h-4 text-brand-blue-600" />
+              </div>
+              <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 border border-slate-200/90 px-2.5 py-0.5 rounded-md">
+                {lang === 'mr' ? 'फूड-ग्रेड' : lang === 'hi' ? 'फूड-ग्रेड' : 'Food Grade'}
+              </span>
+            </div>
+
+            <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight group-hover:text-brand-blue-600 transition-colors">
+              {t.hero.stat3Val}
+            </div>
+            <div className="text-xs sm:text-sm font-semibold text-slate-600 mt-1 leading-snug">
+              {t.hero.stat3Label}
+            </div>
+          </div>
+
+          {/* Card 4: 220V Electricity */}
+          <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-300 hover:-translate-y-1 group">
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
+                <Sparkles className="w-4 h-4 text-amber-600" />
+              </div>
+              <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 border border-slate-200/90 px-2.5 py-0.5 rounded-md">
+                {lang === 'mr' ? 'सिंगल फेज' : lang === 'hi' ? 'सिंगल फेज' : 'Single Phase'}
+              </span>
+            </div>
+
+            <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight group-hover:text-amber-600 transition-colors">
+              {t.hero.stat4Val}
+            </div>
+            <div className="text-xs sm:text-sm font-semibold text-slate-600 mt-1 leading-snug">
+              {t.hero.stat4Label}
+            </div>
+          </div>
+
+        </div>
+
+        {/* Bottom Divider Line - Perfectly Symmetrical & Aligned */}
+        <div className="w-full max-w-5xl mx-auto border-t border-slate-200 my-10 sm:my-12" />
+
         {/* Section Divider Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 pt-4 border-t border-slate-200/80">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold uppercase tracking-wider mb-2">
             <Sparkles className="w-3.5 h-3.5 text-brand-amber-500" />
             <span>{data.badge}</span>
