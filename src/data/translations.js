@@ -16,9 +16,9 @@ export const translations = {
       phone: "+91 74472 71253",
       whatsappNumber: "917447271253",
       email: "mkenterprises2325@gmail.com",
-      offerPrefix: "धमाका ऑफर:",
-      offerText: "महिला स्वयं सहायता समूह (SHG) व नए उद्यमियों के लिए सीधी फैक्टरी छूट!",
-      offerCta: "ऑफर रेट पाएं"
+      offerPrefix: "NEW",
+      offerText: "अब अधिक प्रभावी उत्पादन के लिए — स्वराज मशीनरी के नए आधुनिक मॉडल्स उपलब्ध!   |   🚚 पूरे महाराष्ट्र व भारत में होम डिलीवरी व इंस्टॉलेशन सुविधा",
+      offerCta: "अधिक जानकारी"
     },
     hero: {
       trustBadge: "⭐ 100% स्वदेशी भारतीय निर्माण • सीधी फैक्टरी सप्लाई",
