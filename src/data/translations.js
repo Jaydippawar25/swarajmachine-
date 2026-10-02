@@ -241,9 +241,9 @@ export const translations = {
       phone: "+91 74472 71253",
       whatsappNumber: "917447271253",
       email: "mkenterprises2325@gmail.com",
-      offerPrefix: "धमाका ऑफर:",
-      offerText: "महिला बचत गट व नवीन उद्योजकांसाठी थेट फॅक्टरी सवलत!",
-      offerCta: "ऑफर मिळवा"
+      offerPrefix: "NEW",
+      offerText: "आता अधिक प्रभावी उत्पादनासाठी — स्वराज मशीनरीची नवीन आधुनिक मॉडेल्स उपलब्ध!   |   🚚 संपूर्ण महाराष्ट्र होम डिलिव्हरी व इंस्टॉलेशन सुविधा",
+      offerCta: "अधिक माहिती"
     },
     hero: {
       trustBadge: "⭐ १००% स्वदेशी भारतीय बनावट • थेट फॅक्टरी दर",
