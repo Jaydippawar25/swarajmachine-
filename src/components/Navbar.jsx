@@ -51,7 +51,7 @@ export default function Navbar({ lang, setLang, t, onOpenQuote, offers, settings
       {/* Top Urgent Offer Announcement Bar */}
       {showOfferBanner && (
         <div className="relative overflow-hidden bg-slate-950 text-white border-b border-amber-500/25 z-50 py-1.5 px-3 sm:px-4 text-xs">
-          <div className="max-w-[1440px] mx-auto flex items-center justify-between sm:justify-center gap-2 sm:gap-3.5">
+          <div className="max-w-[1440px] mx-auto flex items-center justify-between sm:justify-center gap-2 sm:gap-4">
             <div 
               onClick={onOpenQuote}
               className="flex items-center gap-2 sm:gap-2.5 min-w-0 cursor-pointer hover:text-amber-300 transition"
@@ -72,7 +72,7 @@ export default function Navbar({ lang, setLang, t, onOpenQuote, offers, settings
                     ? 'अब अधिक प्रभावी उत्पादन के लिए — स्वराज मशीनरी के नए आधुनिक मॉडल्स उपलब्ध!'
                     : 'For High-Yield Production — New Upgraded Swaraj Machinery Models Available!'}
                 </span>
-                <span className="hidden lg:inline text-slate-200">
+                <span className="hidden sm:inline text-slate-200">
                   {lang === 'mr'
                     ? ' \u00A0|\u00A0 🚚 संपूर्ण महाराष्ट्र होम डिलिव्हरी व इंस्टॉलेशन सुविधा'
                     : lang === 'hi'
