@@ -466,9 +466,9 @@ export const translations = {
       phone: "+91 74472 71253",
       whatsappNumber: "917447271253",
       email: "mkenterprises2325@gmail.com",
-      offerPrefix: "Special Offer:",
-      offerText: "Direct Factory Pricing for Women SHGs & Food Startups!",
-      offerCta: "Claim Deal"
+      offerPrefix: "NEW",
+      offerText: "For High-Yield Production — New Upgraded Swaraj Machinery Models Available!   |   🚚 All-Maharashtra Delivery & Installation Support",
+      offerCta: "Learn More"
     },
     hero: {
       trustBadge: "⭐ 100% Made in India • Direct Factory Supply",
