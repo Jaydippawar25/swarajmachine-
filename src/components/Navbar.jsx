@@ -51,32 +51,46 @@ export default function Navbar({ lang, setLang, t, onOpenQuote, offers, settings
       {/* Top Urgent Offer Announcement Bar */}
       {showOfferBanner && (
         <div className="relative overflow-hidden bg-slate-950 text-white border-b border-amber-500/25 z-50 py-1.5 px-3 sm:px-4 text-xs">
-          <div className="max-w-[1440px] mx-auto flex items-center justify-between gap-2 sm:gap-4">
+          <div className="max-w-[1440px] mx-auto flex items-center justify-between sm:justify-center gap-2 sm:gap-3.5">
             <div 
               onClick={onOpenQuote}
-              className="flex items-center gap-2 min-w-0 cursor-pointer hover:text-amber-300 transition"
+              className="flex items-center gap-2 sm:gap-2.5 min-w-0 cursor-pointer hover:text-amber-300 transition"
             >
               {/* Clearly Visible NEW Badge with Speaker Icon */}
               <div className="inline-flex items-center gap-1 bg-amber-400 text-slate-950 font-black text-[10px] sm:text-[11px] px-2 py-0.5 rounded-md uppercase tracking-wider flex-shrink-0 shadow-xs">
                 <span>📢</span>
                 <span>NEW</span>
               </div>
-              <span className="text-slate-500 select-none hidden sm:inline">|</span>
+              <span className="text-slate-600 select-none hidden sm:inline">|</span>
 
-              {/* Announcement Text */}
-              <span className="text-slate-200 text-[11px] sm:text-xs font-medium truncate">
-                <span>आता अधिक प्रभावी उत्पादनासाठी — स्वराज मशीनरीची नवीन आधुनिक मॉडेल्स उपलब्ध!</span>
-                <span className="hidden md:inline"> &nbsp;|&nbsp; 🚚 संपूर्ण महाराष्ट्र होम डिलिव्हरी व इंस्टॉलेशन सुविधा</span>
+              {/* Announcement Text - Proper Bold & Crisp with Multi-Language Support */}
+              <span className="text-white text-[11px] sm:text-xs font-bold truncate">
+                <span>
+                  {lang === 'mr'
+                    ? 'आता अधिक प्रभावी उत्पादनासाठी — स्वराज मशीनरीची नवीन आधुनिक मॉडेल्स उपलब्ध!'
+                    : lang === 'hi'
+                    ? 'अब अधिक प्रभावी उत्पादन के लिए — स्वराज मशीनरी के नए आधुनिक मॉडल्स उपलब्ध!'
+                    : 'For High-Yield Production — New Upgraded Swaraj Machinery Models Available!'}
+                </span>
+                <span className="hidden lg:inline text-slate-200">
+                  {lang === 'mr'
+                    ? ' \u00A0|\u00A0 🚚 संपूर्ण महाराष्ट्र होम डिलिव्हरी व इंस्टॉलेशन सुविधा'
+                    : lang === 'hi'
+                    ? ' \u00A0|\u00A0 🚚 पूरे महाराष्ट्र व भारत में होम डिलीवरी व इंस्टॉलेशन सुविधा'
+                    : ' \u00A0|\u00A0 🚚 All-Maharashtra Delivery & Installation Support'}
+                </span>
               </span>
             </div>
 
-            {/* Clear Yellow/Orange "अधिक माहिती →" Button */}
+            {/* Clear Yellow/Orange Button with Multi-Language Support */}
             <button
               type="button"
               onClick={onOpenQuote}
-              className="inline-flex items-center gap-1 bg-amber-400 hover:bg-amber-300 active:scale-95 text-slate-950 px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-black transition-all flex-shrink-0 shadow-xs cursor-pointer whitespace-nowrap"
+              className="inline-flex items-center gap-1 bg-amber-400 hover:bg-amber-300 active:scale-95 text-slate-950 px-2.5 sm:px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-black transition-all flex-shrink-0 shadow-sm cursor-pointer whitespace-nowrap"
             >
-              <span>अधिक माहिती</span>
+              <span>
+                {lang === 'mr' ? 'अधिक माहिती' : lang === 'hi' ? 'अधिक जानकारी' : 'Learn More'}
+              </span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
