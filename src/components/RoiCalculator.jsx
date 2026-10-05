@@ -62,8 +62,8 @@ export default function RoiCalculator({ t, lang, onOpenQuote, calculatorSettings
   const dailyPresets = [1000, 1500, 2000, 3000];
 
   return (
-    <section id="calculator" className="py-14 sm:py-20 bg-slate-100/90 relative border-b border-slate-300">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="calculator" className="py-14 sm:py-20 relative border-b border-slate-300 overflow-hidden site-text-texture-bg site-text-texture-wash-light">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-10">

@@ -156,3 +156,40 @@
   animation: offerGlow 2.5s ease-in-out infinite;
 }
 
+/* Texture Background behind Website Text (50% Opacity as requested) */
+.site-text-texture-bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.site-text-texture-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/text-bg-texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5; /* 50% opacity */
+  pointer-events: none;
+  z-index: -2;
+}
+
+.site-text-texture-wash-light::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.78);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.site-text-texture-wash-slate::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(248, 250, 252, 0.82);
+  pointer-events: none;
+  z-index: -1;
+}
+

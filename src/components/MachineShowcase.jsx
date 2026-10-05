@@ -59,8 +59,8 @@ export default function MachineShowcase({ t, lang, onOpenQuote, specs, settings 
   };
 
   return (
-    <section id="machine-showcase" className="py-14 sm:py-20 bg-gradient-to-b from-slate-50 via-white to-slate-50 relative border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="machine-showcase" className="py-14 sm:py-20 relative border-b border-slate-200 overflow-hidden site-text-texture-bg site-text-texture-wash-light">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Business Subheadline, Description & Primary Action CTAs */}
         <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">

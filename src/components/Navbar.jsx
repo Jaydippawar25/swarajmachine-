@@ -51,7 +51,15 @@ export default function Navbar({ lang, setLang, t, onOpenQuote, offers, settings
       {/* Top Urgent Offer Announcement Bar */}
       {showOfferBanner && (
         <div className="relative overflow-hidden bg-slate-950 text-white border-b border-amber-500/25 z-50 py-1.5 px-3 sm:px-4 text-xs">
-          <div className="max-w-[1440px] mx-auto flex items-center justify-between sm:justify-center gap-2 sm:gap-4">
+          {/* Texture Image Layer at 50% Opacity */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-50 pointer-events-none mix-blend-screen"
+            style={{ backgroundImage: `url('/text-bg-texture.jpg')` }}
+            aria-hidden="true"
+          />
+          <div className="absolute inset-0 bg-slate-950/50 pointer-events-none" />
+
+          <div className="relative z-10 max-w-[1440px] mx-auto flex items-center justify-between sm:justify-center gap-2 sm:gap-4">
             <div 
               onClick={onOpenQuote}
               className="flex items-center gap-2 sm:gap-2.5 min-w-0 cursor-pointer hover:text-amber-300 transition"

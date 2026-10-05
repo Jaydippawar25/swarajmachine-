@@ -79,7 +79,17 @@ export default function PublicWebsite() {
   const sections = settings?.sections || {};
 
   return (
-    <div className={`min-h-screen flex flex-col font-sans overflow-x-hidden w-full ${lang !== 'en' ? 'font-devanagari' : ''} pb-14 sm:pb-0`}>
+    <div className={`min-h-screen flex flex-col font-sans overflow-x-hidden w-full relative ${lang !== 'en' ? 'font-devanagari' : ''} pb-14 sm:pb-0`}>
+      {/* Global Background Texture behind Website Text (50% Opacity) */}
+      <div 
+        className="fixed inset-0 pointer-events-none -z-10 bg-cover bg-center bg-no-repeat opacity-50"
+        style={{ 
+          backgroundImage: `url('/text-bg-texture.jpg')`,
+          backgroundAttachment: 'fixed'
+        }}
+        aria-hidden="true"
+      />
+
       {/* Top Navbar with dynamic offers and settings */}
       <Navbar 
         lang={lang} 
@@ -91,7 +101,7 @@ export default function PublicWebsite() {
       />
 
       {/* Main Flow */}
-      <main className="flex-1">
+      <main className="flex-1 relative z-10">
         {/* Hero Section */}
         {sections.hero !== false && (
           <Hero 
