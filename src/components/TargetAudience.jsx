@@ -12,7 +12,7 @@ export default function TargetAudience({ t, lang, onOpenQuote }) {
   ];
 
   return (
-    <section id="benefits" className="py-14 sm:py-20 relative border-b border-slate-200 overflow-hidden site-text-texture-bg site-text-texture-wash-light">
+    <section id="benefits" className="py-14 sm:py-20 relative border-b border-slate-200/80 bg-white/75 backdrop-blur-[1px]">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
