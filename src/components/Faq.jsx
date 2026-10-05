@@ -13,7 +13,7 @@ export default function Faq({ t, lang, faqs }) {
   };
 
   return (
-    <section id="faq" className="py-14 sm:py-20 relative border-b border-slate-200 overflow-hidden site-text-texture-bg site-text-texture-wash-slate">
+    <section id="faq" className="py-14 sm:py-20 relative border-b border-slate-200/80 bg-slate-50/75 backdrop-blur-[1px]">
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
