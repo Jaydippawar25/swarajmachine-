@@ -51,33 +51,23 @@ export default function Hero({ t, lang }) {
         </button>
       </div>
 
-      {/* Center Cinematic Content Over Video with 50% Opacity Texture Background */}
-      <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-8 text-center py-10 sm:py-16 my-4 sm:my-8 rounded-3xl overflow-hidden">
-        {/* Texture Image Layer at 50% Opacity behind Hero Text */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-50 pointer-events-none mix-blend-screen"
-          style={{ backgroundImage: `url('/text-bg-texture.jpg')` }}
-          aria-hidden="true"
-        />
-        {/* Soft vignette backing to ensure text is 100% sharp and readable */}
-        <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-xs pointer-events-none -z-10" />
-
-        <div className="relative z-10">
-          {/* Sleek Trust Badge matching the cinematic video */}
-          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md text-amber-300 text-[11px] sm:text-xs font-bold shadow-xl border border-amber-400/40 mb-4 sm:mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
-            <Award className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
-            <span className="tracking-wide">{t.hero.trustBadge}</span>
-          </div>
-
-          {/* Main Product Name - Fully dynamic for Hindi, English & Marathi */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-normal leading-[1.3] sm:leading-[1.25] drop-shadow-2xl">
-            {t.hero.title}{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200 block sm:inline">
-              {t.hero.titleHighlight}
-            </span>
-          </h1>
+      {/* Center Cinematic Content Over Video */}
+      <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 text-center py-16 sm:py-24">
+        
+        {/* Sleek Trust Badge matching the cinematic video */}
+        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md text-amber-300 text-[11px] sm:text-xs font-bold shadow-xl border border-amber-400/40 mb-4 sm:mb-6">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+          <Award className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+          <span className="tracking-wide">{t.hero.trustBadge}</span>
         </div>
+
+        {/* Main Product Name - Fully dynamic for Hindi, English & Marathi */}
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-normal leading-[1.3] sm:leading-[1.25] drop-shadow-2xl">
+          {t.hero.title}{' '}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200 block sm:inline">
+            {t.hero.titleHighlight}
+          </span>
+        </h1>
       </div>
 
       {/* Inverted Semi-Circle Fade Divider (उलट अर्धसर्कल फेड - आत न जाता खाली वळणारा) */}
