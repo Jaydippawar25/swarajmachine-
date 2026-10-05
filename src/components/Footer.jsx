@@ -13,16 +13,8 @@ export default function Footer({ t, lang, onOpenQuote, settings }) {
   const sections = settings?.sections || {};
 
   return (
-    <footer className="relative bg-slate-950 text-slate-400 pt-12 pb-10 border-t border-slate-800 text-xs sm:text-sm overflow-hidden">
-      {/* Texture Image Layer at 50% Opacity */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center opacity-50 pointer-events-none mix-blend-screen"
-        style={{ backgroundImage: `url('/text-bg-texture.jpg')` }}
-        aria-hidden="true"
-      />
-      <div className="absolute inset-0 bg-slate-950/80 pointer-events-none" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-slate-950 text-slate-400 pt-12 pb-10 border-t border-slate-800 text-xs sm:text-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-slate-800">
           
