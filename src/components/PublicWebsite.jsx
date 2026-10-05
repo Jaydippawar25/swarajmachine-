@@ -80,16 +80,6 @@ export default function PublicWebsite() {
 
   return (
     <div className={`min-h-screen flex flex-col font-sans overflow-x-hidden w-full relative ${lang !== 'en' ? 'font-devanagari' : ''} pb-14 sm:pb-0`}>
-      {/* Global Background Texture behind Website Text (50% Opacity) */}
-      <div 
-        className="fixed inset-0 pointer-events-none -z-10 bg-cover bg-center bg-no-repeat opacity-50"
-        style={{ 
-          backgroundImage: `url('/text-bg-texture.jpg')`,
-          backgroundAttachment: 'fixed'
-        }}
-        aria-hidden="true"
-      />
-
       {/* Top Navbar with dynamic offers and settings */}
       <Navbar 
         lang={lang} 
@@ -101,8 +91,8 @@ export default function PublicWebsite() {
       />
 
       {/* Main Flow */}
-      <main className="flex-1 relative z-10">
-        {/* Hero Section */}
+      <main className="flex-1 relative">
+        {/* 1. Hero Section - Crisp & 100% Unobstructed Video (NO texture) */}
         {sections.hero !== false && (
           <Hero 
             t={t} 
@@ -111,80 +101,95 @@ export default function PublicWebsite() {
           />
         )}
 
-        {/* Machine Showcase: Media Gallery & Verified Specs */}
-        {sections.showcase !== false && (
-          <MachineShowcase 
-            t={t} 
-            lang={lang} 
-            onOpenQuote={() => setIsQuoteOpen(true)} 
-            specs={specs}
-            settings={settings}
+        {/* 2. All Sections Below Hero: From Machine Showcase down to the very end with 50% opacity texture */}
+        <div className="relative">
+          {/* Continuous Texture Background at 50% Opacity behind all text sections */}
+          <div 
+            className="absolute inset-0 pointer-events-none z-0 bg-cover bg-top bg-repeat-y opacity-50"
+            style={{ 
+              backgroundImage: `url('/text-bg-texture.jpg')`,
+              backgroundSize: '100% auto',
+            }}
+            aria-hidden="true"
           />
-        )}
 
-        {/* Manual vs Machine: Commercial Comparison */}
-        {sections.comparison !== false && (
-          <Comparison 
-            t={t} 
-            lang={lang} 
-            onOpenQuote={() => setIsQuoteOpen(true)} 
-          />
-        )}
+          <div className="relative z-10">
+            {/* Machine Showcase: Media Gallery & Verified Specs */}
+            {sections.showcase !== false && (
+              <MachineShowcase 
+                t={t} 
+                lang={lang} 
+                onOpenQuote={() => setIsQuoteOpen(true)} 
+                specs={specs}
+                settings={settings}
+              />
+            )}
 
-        {/* Interactive Earnings & Net Profit Predictor */}
-        {sections.calculator !== false && (
-          <RoiCalculator 
-            t={t} 
-            lang={lang} 
-            onOpenQuote={() => setIsQuoteOpen(true)} 
-            calculatorSettings={calculatorSettings}
-          />
-        )}
+            {/* Manual vs Machine: Commercial Comparison */}
+            {sections.comparison !== false && (
+              <Comparison 
+                t={t} 
+                lang={lang} 
+                onOpenQuote={() => setIsQuoteOpen(true)} 
+              />
+            )}
 
-        {/* 3 Simple Operation Steps */}
-        {sections.process !== false && (
-          <WorkingProcess 
-            t={t} 
-            lang={lang} 
-            onOpenQuote={() => setIsQuoteOpen(true)} 
-          />
-        )}
+            {/* Interactive Earnings & Net Profit Predictor */}
+            {sections.calculator !== false && (
+              <RoiCalculator 
+                t={t} 
+                lang={lang} 
+                onOpenQuote={() => setIsQuoteOpen(true)} 
+                calculatorSettings={calculatorSettings}
+              />
+            )}
 
-        {/* Target Audience: Bachat Gat, Sweet Shops, Startups */}
-        {sections.targetAudience !== false && (
-          <TargetAudience 
-            t={t} 
-            lang={lang} 
-            onOpenQuote={() => setIsQuoteOpen(true)} 
-          />
-        )}
+            {/* 3 Simple Operation Steps */}
+            {sections.process !== false && (
+              <WorkingProcess 
+                t={t} 
+                lang={lang} 
+                onOpenQuote={() => setIsQuoteOpen(true)} 
+              />
+            )}
 
-        {/* Official Catalogues & Lightbox */}
-        {sections.brochures !== false && (
-          <BrochureGallery 
-            t={t} 
-            lang={lang} 
-            brochures={brochures}
-            settings={settings}
-          />
-        )}
+            {/* Target Audience: Bachat Gat, Sweet Shops, Startups */}
+            {sections.targetAudience !== false && (
+              <TargetAudience 
+                t={t} 
+                lang={lang} 
+                onOpenQuote={() => setIsQuoteOpen(true)} 
+              />
+            )}
 
-        {/* Customer Testimonials & Reviews */}
-        {sections.testimonials !== false && (
-          <Testimonials 
-            testimonials={testimonials} 
-            lang={lang} 
-          />
-        )}
+            {/* Official Catalogues & Lightbox */}
+            {sections.brochures !== false && (
+              <BrochureGallery 
+                t={t} 
+                lang={lang} 
+                brochures={brochures}
+                settings={settings}
+              />
+            )}
 
-        {/* Essential Buyer FAQs */}
-        {sections.faq !== false && (
-          <Faq 
-            t={t} 
-            lang={lang} 
-            faqs={faqs}
-          />
-        )}
+            {/* Customer Testimonials & Reviews */}
+            {sections.testimonials !== false && (
+              <Testimonials 
+                testimonials={testimonials} 
+                lang={lang} 
+              />
+            )}
+
+            {/* Essential Buyer FAQs */}
+            {sections.faq !== false && (
+              <Faq 
+                t={t} 
+                lang={lang} 
+                faqs={faqs}
+              />
+            )}
+          </div>
+        </div>
       </main>
 
       {/* Footer */}
