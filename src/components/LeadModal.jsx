@@ -71,7 +71,7 @@ export default function LeadModal({ isOpen, onClose, t, lang }) {
       origin: { y: 0.6 }
     });
 
-    const whatsappNumber = t?.nav?.whatsappNumber || '917447271253';
+    const whatsappNumber = t?.nav?.whatsappNumber || '919403454653';
 
     const msg = lang === 'mr'
       ? `*नमस्कार Swaraj Machinery,*\n\nमला राजगिरा आणि मुरमुरा लाडू मेकिंग मशीनबद्दल माहिती व फॅक्टरी कोटेशन हवे आहे.\n\n👤 *नाव:* ${formData.name}\n📱 *मोबाईल:* ${formData.phone}\n📍 *गाव/शहर:* ${formData.city}\n💼 *व्यवसाय प्रकार:* ${formData.purpose}\n\nकृपया मला थेट फॅक्टरी किंमत, सवलत आणि व्हिडिओ डेमो पाठवा.`
