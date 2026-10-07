@@ -660,7 +660,7 @@ export default function LeadsManager() {
                     required
                     value={newCustomer.mobile}
                     onChange={(e) => setNewCustomer({ ...newCustomer, mobile: e.target.value })}
-                    placeholder="e.g. 7447271253"
+                    placeholder="e.g. 9403454653"
                     className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:border-amber-400 font-mono font-bold"
                   />
                 </div>
