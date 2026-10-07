@@ -18,8 +18,8 @@ function notifyUpdate(type, data) {
 }
 
 export const defaultSettings = {
-  phone: '+91 74472 71253',
-  whatsappNumber: '917447271253',
+  phone: '+91 94034 54653',
+  whatsappNumber: '919403454653',
   email: 'mkenterprises2325@gmail.com',
   notificationEmail: 'mkenterprises2325@gmail.com',
   address: 'Swaraj Machinery Works, MIDC Industrial Area, Shiroli, Kolhapur, Maharashtra - 416122',
