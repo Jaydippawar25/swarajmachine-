@@ -304,8 +304,8 @@ export const contentService = {
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
-        if (parsed.phone === '+91 75170 52317') parsed.phone = defaultSettings.phone;
-        if (parsed.whatsappNumber === '917517052317') parsed.whatsappNumber = defaultSettings.whatsappNumber;
+        if (parsed.phone === '+91 74472 71253' || parsed.phone === '+91 75170 52317') parsed.phone = defaultSettings.phone;
+        if (parsed.whatsappNumber === '917447271253' || parsed.whatsappNumber === '917517052317') parsed.whatsappNumber = defaultSettings.whatsappNumber;
         if (parsed.notificationEmail === 'sales@swarajmachine.com') parsed.notificationEmail = defaultSettings.notificationEmail;
         return { ...defaultSettings, ...parsed };
       } catch (e) {}
