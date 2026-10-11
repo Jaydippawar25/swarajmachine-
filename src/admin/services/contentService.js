@@ -38,7 +38,7 @@ export const defaultSettings = {
   },
   seo: {
     title: "Swaraj Machinery's - Commercial Rajgira & Murmura Laddu Making Machine",
-    description: "Automatic Commercial Rajgira and Murmura Laddu Making Machine with 1000+ laddus/hour capacity. 100% SS 304 food-grade stainless steel with 1-year warranty.",
+    description: "Automatic Commercial Rajgira and Murmura Laddu Making Machine with 1000+ laddus/hour capacity. High quality food-grade materials with 1-year warranty.",
     keywords: "laddu machine, rajgira laddu making machine, murmura laddu machine, bachat gat business, swaraj machinery",
     googleAnalyticsId: "",
     metaPixelId: ""
@@ -87,17 +87,19 @@ export const defaultOffers = {
 };
 
 export const defaultSpecs = {
-  priceDisplay: '₹1,85,000',
+  priceDisplay: '₹1,85,000+ (मॉडेलनुसार ₹२L+)',
   priceOnRequest: false,
   items: [
     { id: 'spec-1', label: 'उत्पादन क्षमता (Speed)', val: '800 से 1200+ लड्डू प्रति घंटा' },
-    { id: 'spec-2', label: 'उपयुक्त लड्डू प्रकार', val: 'राजगिरा, मुरमुरा (लाई), तिल-गुड़ लड्डू' },
+    { id: 'spec-2', label: 'उपयुक्त लड्डू प्रकार', val: 'राजगिरा और मुरमुरा (लाई) लड्डू' },
     { id: 'spec-3', label: 'बिजली कनेक्शन (Power)', val: '220V सिंगल फेज (घरेलू सामान्य बिजली)' },
-    { id: 'spec-4', label: 'फूड संपर्क पार्ट्स', val: '100% SS 304 फूड-ग्रेड स्टेनलेस स्टील' },
-    { id: 'spec-5', label: 'ऑपरेटर की आवश्यकता', val: 'केवल 1 ऑपरेटर (आसान स्पीड कंट्रोल)' },
-    { id: 'spec-6', label: 'दैनिक बिजली खर्च', val: 'मात्र ₹8 - ₹12 प्रति दिन' },
-    { id: 'spec-7', label: 'डिलीवरी व ट्रेनिंग', val: 'अखिल भारतीय ट्रांसपोर्ट + वीडियो डेमो गाइड' },
-    { id: 'spec-8', label: 'वारंटी सपोर्ट', val: '1 वर्ष की वारंटी + लाइफटाइम सपोर्ट' }
+    { id: 'spec-4', label: 'फूड संपर्क पार्ट्स', val: 'स्टेनलेस स्टील, एल्युमिनियम और पी.पी. (PP) फूड-ग्रेड मटेरियल' },
+    { id: 'spec-5', label: 'ऑपरेटर की आवश्यकता', val: '2 व्यक्ति 1 यूनिट आसानी से संभाल सकते हैं (1 फीडिंग + 1 ट्रे/पैकिंग)' },
+    { id: 'spec-6', label: 'दैनिक बिजली खर्च', val: '5 से 6 यूनिट प्रति दिन (220V सिंगल फेज)' },
+    { id: 'spec-7', label: 'लड्डू साइज / मोल्ड', val: '1 मशीन में 1 फिक्स साइज (उदा. 5 ग्राम); साइज बदलने पर अलग मशीन/डाई' },
+    { id: 'spec-8', label: 'मशीन कीमत (Price)', val: '₹1,85,000/- से शुरू (मॉडल अनुसार ₹2+ लाख)' },
+    { id: 'spec-9', label: 'डिलीवरी व ट्रेनिंग', val: 'अखिल भारतीय ट्रांसपोर्ट + वीडियो डेमो गाइड' },
+    { id: 'spec-10', label: 'वारंटी सपोर्ट', val: '1 वर्ष की वारंटी + लाइफटाइम सपोर्ट' }
   ]
 };
 
@@ -146,7 +148,7 @@ export const defaultFaqsByLang = {
     {
       id: 'faq-en-4',
       q: 'How easy is machine cleaning and maintenance?',
-      a: 'All food-contact parts are manufactured from 100% SS 304 food-grade stainless steel. Cleaning takes just 10 minutes with warm water and a clean cloth after production.',
+      a: 'All food-contact parts are manufactured from food-grade materials (stainless steel, aluminium & PP). Cleaning takes just 10 minutes with warm water and a clean cloth after production.',
       published: true,
     },
     {
@@ -154,13 +156,19 @@ export const defaultFaqsByLang = {
       q: 'What warranty and after-sales support is provided?',
       a: 'Every machine comes with a 1-year comprehensive factory warranty and lifetime technical assistance. Genuine spare parts and video support are readily available.',
       published: true,
+    },
+    {
+      id: 'faq-en-6',
+      q: 'Can a single machine produce multiple laddu sizes (grammages)?',
+      a: 'No, each machine is engineered for 1 fixed size (such as 5 grams). To produce a different laddu size or weight, a separate machine or dedicated die is required.',
+      published: true,
     }
   ],
   mr: [
     {
       id: 'faq-mr-1',
       q: 'ही मशीन घरातील 220V विजेवर चालते का की कमर्शियल वीज कनेक्शन हवे?',
-      a: 'होय, ही मशीन सामान्य सिंगल-फेज (220V) घरगुती विजेवर सहज चालते. यासाठी कोणत्याही कमर्शियल 3-फेज कनेक्शनची गरज नाही.',
+      a: 'होय, ही मशीन सामान्य सिंगल-फेज (220V) घरगुती विजेवर सहज चालते. यासाठी कोणत्याही कमर्शियल 3-फेज कनेक्शनची गरज नाही. दैनंदिन वीज वापर सुमारे ५ ते ६ युनिट प्रति दिवस असतो.',
       published: true,
     },
     {
@@ -186,19 +194,25 @@ export const defaultFaqsByLang = {
       q: 'वॉरंटी आणि मेंटेनन्स सपोर्ट काय आहे?',
       a: 'मशीनवर १ वर्षाची वॉरंटी आणि लाइफटाइम तांत्रिक सहकार्य मिळते. स्पेअर पार्ट्स नेहमी उपलब्ध असतात.',
       published: true,
+    },
+    {
+      id: 'faq-mr-6',
+      q: 'एकाच मशीनमध्ये वेगवेगळ्या आकाराचे (ग्रॅमचे) लाडू बनवता येतात का?',
+      a: 'नाही, एका मशीनमध्ये एकच फिक्स साईज (जसे की ५ ग्रॅम) तयार होते. लाडूचा आकार किंवा वजन बदलायचे असल्यास त्यानुसार वेगळी मशीन किंवा डाय घ्यावी लागते.',
+      published: true,
     }
   ],
   hi: [
     {
       id: 'faq-hi-1',
       q: 'क्या यह मशीन घरेलू 220V बिजली पर काम करती है या कमर्शियल कनेक्शन चाहिए?',
-      a: 'यह 100% घरेलू 220V सिंगल-फेज सामान्य बिजली कनेक्शन पर आसानी से चलती है। इसके लिए किसी अलग कमर्शियल 3-फेज कनेक्शन की कोई आवश्यकता नहीं है।',
+      a: 'यह 100% घरेलू 220V सिंगल-फेज सामान्य बिजली कनेक्शन पर आसानी से चलती है। इसके लिए किसी अलग कमर्शियल 3-फेज कनेक्शन की कोई आवश्यकता नहीं है। दैनिक बिजली खपत लगभग 5 से 6 यूनिट प्रति दिन होती है।',
       published: true,
     },
     {
       id: 'faq-hi-2',
-      q: 'लड्डू का वजन और साइज कैसे सेट किया जाता है?',
-      a: 'मशीन में आसान मोल्ड और गति नियंत्रण दिया गया है जिससे आप 20 ग्राम से लेकर 50+ ग्राम तक के मनचाहे आकार और वजन के लड्डू बना सकते हैं।',
+      q: 'क्या एक ही मशीन में अलग-अलग साइज (ग्राम) के लड्डू बन सकते हैं?',
+      a: 'एक मशीन में एक ही फिक्स साइज (जैसे 5 ग्राम) का लड्डू बनता है। साइज बदलने पर अलग मशीन या डाई लगती है।',
       published: true,
     },
     {
@@ -210,7 +224,7 @@ export const defaultFaqsByLang = {
     {
       id: 'faq-hi-4',
       q: 'मशीन की सफाई और मेंटेनेंस कितना आसान है?',
-      a: 'फूड संपर्क के सभी पार्ट्स 100% SS 304 फूड-ग्रेड स्टेनलेस स्टील के हैं। काम खत्म होने के बाद 10 मिनट में आसानी से गर्म पानी और कपड़े से साफ हो जाती है।',
+      a: 'फूड संपर्क के सभी पार्ट्स फूड-ग्रेड मटेरियल (स्टेनलेस स्टील, एल्युमिनियम और पी.पी.) के बने हैं। काम खत्म होने के बाद 10 मिनट में आसानी से गर्म पानी और कपड़े से साफ हो जाती है।',
       published: true,
     },
     {

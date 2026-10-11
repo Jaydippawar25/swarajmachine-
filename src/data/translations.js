@@ -24,7 +24,7 @@ export const translations = {
       trustBadge: "⭐ 100% स्वदेशी भारतीय निर्माण • सीधी फैक्टरी सप्लाई",
       title: "कमर्शियल राजगिरा और मुरमुरा",
       titleHighlight: "लड्डू मेकिंग मशीन",
-      subheadline: "हाथों से लड्डू बांधना बंद करें — अब बनाएं 1000+ लड्डू प्रति घंटा, सिर्फ 1 व्यक्ति से!",
+      subheadline: "हाथों से लड्डू बांधना बंद करें — अब बनाएं 1000+ लड्डू प्रति घंटा, 2 व्यक्तियों द्वारा (1 यूनिट संचालन)!",
       description: "त्योहारों और उपवास के सीजन में लेबर की कमी और धीमी गति से परेशान हैं? स्वदेशी तकनीक से निर्मित SWARAJ लड्डू मशीन से कम समय में परफेक्ट गोल और एकसमान लड्डू बनाएं और महीने का ₹35,000+ अतिरिक्त मुनाफा कमाएं।",
       ctaWhatsapp: "WhatsApp पर रेट जानें",
       ctaCall: "सीधे कॉल करें",
@@ -33,30 +33,32 @@ export const translations = {
       stat1Label: "लड्डू प्रति घंटा स्पीड",
       stat2Val: "80%",
       stat2Label: "लेबर खर्च में सीधी बचत",
-      stat3Val: "SS 304",
-      stat3Label: "फूड-ग्रेड स्टेनलेस स्टील",
+      stat3Val: "फूड-ग्रेड",
+      stat3Label: "फूड-ग्रेड मटेरियल का उपयोग",
       stat4Val: "220V",
       stat4Label: "घरेलू 220V बिजली पर चालू"
     },
     showcase: {
       badge: "मशीन की वास्तविक तस्वीरें और वीडियो",
       title: "मशीन देखें और समझें — पूरा काम बेहद आसान!",
-      subtitle: "मजबूत हेवी-ड्यूटी बॉडी, फूड-ग्रेड SS 304 स्टील और सिंगल स्विच आसान ऑपरेशन",
+      subtitle: "मजबूत हेवी-ड्यूटी बॉडी, फूड-ग्रेड मटेरियल और सिंगल स्विच आसान ऑपरेशन",
       tabPhoto1: "लड्डू ट्रे मॉडल",
       tabPhoto2: "मशीन फ्रंट व्यू",
       tabVideo: "लाइव चालू वीडियो",
-      quickFeature1: "एक ही मशीन में राजगिरा, मुरमुरा (लाई) और तिल लड्डू तैयार",
+      quickFeature1: "एक ही मशीन में राजगिरा और मुरमुरा (लाई) लड्डू तैयार",
       quickFeature2: "प्रत्येक लड्डू का गोल आकार और वजन 100% एकसमान",
-      quickFeature3: "सिंगल फेज घरेलू बिजली (रोज का खर्च केवल ₹10-₹15)",
+      quickFeature3: "सिंगल फेज घरेलू बिजली (दैनिक बिजली खर्च: 5 से 6 यूनिट प्रति दिन)",
       quickFeature4: "कोई भी महिला या कारीगर 5 मिनट में चलाना सीख जाए",
       specsTitle: "तकनीकी विवरण (Technical Specifications)",
       specs: [
         { label: "उत्पादन क्षमता (Speed)", val: "800 से 1200+ लड्डू प्रति घंटा" },
-        { label: "उपयुक्त लड्डू प्रकार", val: "राजगिरा, मुरमुरा (लाई), तिल-गुड़ लड्डू" },
+        { label: "उपयुक्त लड्डू प्रकार", val: "राजगिरा और मुरमुरा (लाई) लड्डू" },
         { label: "बिजली कनेक्शन (Power)", val: "220V सिंगल फेज (घरेलू सामान्य बिजली)" },
-        { label: "फूड संपर्क पार्ट्स", val: "100% SS 304 फूड-ग्रेड स्टेनलेस स्टील" },
-        { label: "ऑपरेटर की आवश्यकता", val: "केवल 1 ऑपरेटर (आसान स्पीड कंट्रोल)" },
-        { label: "दैनिक बिजली खर्च", val: "मात्र ₹8 - ₹12 प्रति दिन" },
+        { label: "फूड संपर्क पार्ट्स", val: "स्टेनलेस स्टील, एल्युमिनियम और पी.पी. (PP) फूड-ग्रेड मटेरियल" },
+        { label: "ऑपरेटर की आवश्यकता", val: "2 व्यक्ति 1 यूनिट आसानी से संभाल सकते हैं (1 फीडिंग + 1 ट्रे/पैकिंग)" },
+        { label: "दैनिक बिजली खर्च", val: "5 से 6 यूनिट प्रति दिन (220V सिंगल फेज)" },
+        { label: "लड्डू साइज / मोल्ड", val: "1 मशीन में 1 फिक्स साइज (उदा. 5 ग्राम); साइज बदलने पर अलग मशीन/डाई" },
+        { label: "मशीन कीमत (Price)", val: "₹1,85,000/- से शुरू (मॉडल व क्षमता अनुसार ₹2+ लाख)" },
         { label: "डिलीवरी व ट्रेनिंग", val: "अखिल भारतीय ट्रांसपोर्ट + वीडियो डेमो गाइड" },
         { label: "वारंटी सपोर्ट", val: "1 वर्ष की वारंटी + लाइफटाइम सपोर्ट" }
       ],
@@ -78,11 +80,11 @@ export const translations = {
         { title: "हाथों का पसीना व अस्वच्छता", desc: "हाथों के पसीने से लड्डू जल्दी खराब होते हैं और प्रीमियम ब्रांडिंग नहीं हो पाती।" }
       ],
       machinePoints: [
-        { title: "बिना शारीरिक थकान आसान काम", desc: "सिर्फ मिश्रण डालना है और मशीन चालू करनी है, कोई अतिरिक्त मेहनत नहीं।" },
+        { title: "बिना शारीरिक थकान आसान काम", desc: "सिर्फ तैयार मिश्रण के गोले, टुकड़े या मुटके डालना है और मशीन चालू करनी है, कोई अतिरिक्त मेहनत नहीं।" },
         { title: "सुपरफास्ट गति (1000+ लड्डू/घंटा)", desc: "कुछ ही घंटों में हजारों लड्डू तैयार! किसी भी बड़े ऑर्डर को तुरंत पूरा करें।" },
-        { title: "सिर्फ 1 व्यक्ति पर्याप्त (₹30,000+ बचत)", desc: "अकेला व्यक्ति पूरी यूनिट संभाल सकता है, कारीगरों का वेतन सीधे आपकी जेब में।" },
+        { title: "2 व्यक्ति 1 यूनिट संभाल सकते हैं", desc: "2 व्यक्ति 1 यूनिट आसानी से संभाल सकते हैं (1 फीडिंग + 1 ट्रे/पैकिंग), भारी लेबर खर्च में सीधी बचत।" },
         { title: "परफेक्ट गोल व सटीक एकसमान वजन", desc: "हर एक लड्डू का गोल शेप और वजन 100% एक जैसा निकलता है, आकर्षक पैकिंग बनती है।" },
-        { title: "100% हाइजीनिक SS 304 स्टील", desc: "बिना हाथ लगाए साफ-सुथरे लड्डू बनते हैं, जिन्हें आप सुपरमार्केट्स और मॉल में बेच सकते हैं।" }
+        { title: "100% हाइजीनिक फूड-ग्रेड मटेरियल", desc: "स्टेनलेस स्टील, एल्युमिनियम और पी.पी. फूड-ग्रेड पार्ट्स से बिना हाथ लगाए साफ-सुथरे लड्डू बनते हैं।" }
       ],
       bottomCallout: "💡 परिणाम: मशीन लगाने से हर महीने ₹35,000+ की सीधी बचत होती है, यानी 2-3 महीने में मशीन की पूरी लागत वसूल!"
     },
@@ -115,7 +117,7 @@ export const translations = {
         {
           step: "02",
           title: "हॉपर में डालें",
-          desc: "तैयार मिश्रण को हॉपर में डालें और स्पीड रेगुलेटर स्विच ऑन करें।"
+          desc: "तैयार मिश्रण के गोले, टुकड़े या मुटके हॉपर में डालें और स्पीड रेगुलेटर स्विच ऑन करें।"
         },
         {
           step: "03",
@@ -168,11 +170,15 @@ export const translations = {
       items: [
         {
           q: "क्या यह मशीन घर की सामान्य बिजली पर चल जाएगी?",
-          a: "जी हाँ, बिल्कुल! यह मशीन सिंगल फेज (Single Phase 220V) सामान्य घरेलू बिजली पर चलती है। इसके लिए किसी 3-फेज या कमर्शियल मीटर की आवश्यकता नहीं है।"
+          a: "जी हाँ, बिल्कुल! यह मशीन सिंगल फेज (Single Phase 220V) सामान्य घरेलू बिजली पर चलती है। इसके लिए किसी 3-फेज या कमर्शियल मीटर की आवश्यकता नहीं है। दैनिक बिजली खर्च लगभग 5 से 6 यूनिट प्रति दिन आता है।"
         },
         {
           q: "क्या एक ही मशीन से राजगिरा और मुरमुरा दोनों लड्डू बनते हैं?",
           a: "हाँ, यह 2-इन-1 ड्यूल मॉडल है। आप इस पर उपवास का राजगिरा लड्डू और कुरकुरा मुरमुरा (लाई) लड्डू दोनों आसानी से बना सकते हैं।"
+        },
+        {
+          q: "क्या एक ही मशीन में अलग-अलग साइज (ग्राम) के लड्डू बन सकते हैं?",
+          a: "एक मशीन में एक ही फिक्स साइज (जैसे 5 ग्राम) का लड्डू बनता है। साइज बदलने पर अलग मशीन या डाई लगती है।"
         },
         {
           q: "मशीन चलाने की ट्रेनिंग कैसे मिलेगी?",
@@ -249,7 +255,7 @@ export const translations = {
       trustBadge: "⭐ १००% स्वदेशी भारतीय बनावट • थेट फॅक्टरी दर",
       title: "कमर्शियल राजगिरा व मुरमुरा",
       titleHighlight: "लाडू मेकिंग मशीन",
-      subheadline: "हाताने लाडू वळणे आता बंद — आता बनवा तासाला १०००+ लाडू, फक्त १ व्यक्तीमध्ये!",
+      subheadline: "हाताने लाडू वळणे आता बंद — आता बनवा तासाला १०००+ लाडू, २ व्यक्ती १ युनिट सहज सांभाळू शकतात!",
       description: "सणासुदीला आणि उपवासाच्या काळात कारागिरांची टंचाई आणि संथ उत्पादनाने हैराण आहात? SWARAJ लाडू मेकिंग मशीनने तुमचा व्यवसाय वाढवा. वेळ वाचवा, मेहनत कमी करा आणि दरमहा ₹३५,०००+ जास्त नफा कमवा!",
       ctaWhatsapp: "WhatsApp वर दर",
       ctaCall: "थेट फोन करा",
@@ -258,30 +264,32 @@ export const translations = {
       stat1Label: "लाडू प्रति तास क्षमता",
       stat2Val: "८०%",
       stat2Label: "कामगार खर्चात थेट बचत",
-      stat3Val: "SS 304",
-      stat3Label: "फूड-ग्रेड स्टेनलेस स्टील",
+      stat3Val: "फूड-ग्रेड",
+      stat3Label: "फूड ग्रेड मटेरियल वापरलेले आहे",
       stat4Val: "220V",
       stat4Label: "घरगुती सिंगल फेज वीज"
     },
     showcase: {
       badge: "मशीनचे प्रत्यक्ष फोटो व व्हिडिओ",
       title: "मशीन पहा आणि समजून घ्या — काम एकदम सोपे!",
-      subtitle: "मजबूत हेवी-ड्यूटी बॉडी, फूड-ग्रेड SS 304 स्टील आणि १ स्विच सोपे ऑपरेशन",
+      subtitle: "मजबूत हेवी-ड्यूटी बॉडी, फूड ग्रेड मटेरियल आणि १ स्विच सोपे ऑपरेशन",
       tabPhoto1: "लाडू ट्रे मॉडेल",
       tabPhoto2: "मशीन फ्रंट व्ह्यू",
       tabVideo: "लाईव्ह चालू व्हिडिओ",
-      quickFeature1: "एकाच मशीनवर राजगिरा, मुरमुरा (चिरमुरे) व तीळ लाडू तयार",
+      quickFeature1: "एकाच मशीनवर राजगिरा व मुरमुरा (लाई/चिरमुरे) लाडू तयार",
       quickFeature2: "प्रत्येक लाडूचा गोल आकार आणि वजन १००% एकसारखे",
-      quickFeature3: "सिंगल फेज घरगुती वीज (दिवसाचा खर्च फक्त ₹१०-₹१५)",
+      quickFeature3: "सिंगल फेज घरगुती वीज (दैनंदिन वीज खर्च: ५ ते ६ युनिट प्रति दिवस)",
       quickFeature4: "कोणतीही महिला किंवा कामगार ५ मिनिटांत शिकू शकतो",
       specsTitle: "तांत्रिक तपशील (Technical Specifications)",
       specs: [
         { label: "उत्पादन वेग (Speed)", val: "८०० ते १२००+ लाडू प्रति तास" },
-        { label: "बनणारे लाडू प्रकार", val: "राजगिरा, मुरमुरा (लाई/चिरमुरे), तीळ लाडू" },
+        { label: "बनणारे लाडू प्रकार", val: "राजगिरा आणि मुरमुरा (लाई/चिरमुरे) लाडू" },
         { label: "विजेचा प्रकार (Power)", val: "२२०V सिंगल फेज (घरगुती वीज)" },
-        { label: "खाद्य संपर्क भाग", val: "१००% SS 304 फूड-ग्रेड स्टेनलेस स्टील" },
-        { label: "ऑपरेटरची गरज", val: "फक्त १ व्यक्ती (स्पीड रेगुलेटर नॉब)" },
-        { label: "दैनंदिन वीज खर्च", val: "केवळ ₹८ ते ₹१२ प्रति दिवस" },
+        { label: "खाद्य संपर्क भाग", val: "स्टेनलेस स्टील, ॲल्युमिनियम आणि पी.पी. (PP) फूड ग्रेड मटेरियल" },
+        { label: "ऑपरेटरची गरज", val: "२ व्यक्ती १ युनिट सहज सांभाळू शकतात (१ फीडिंग + १ ट्रे/पॅकिंग)" },
+        { label: "दैनंदिन वीज खर्च", val: "५ ते ६ युनिट प्रति दिवस (२२०V सिंगल फेज)" },
+        { label: "लाडू आकार / वजन", val: "एका मशीनमध्ये १ फिक्स साईज (उदा. ५ ग्रॅम); आकार बदलल्यास वेगळी मशीन किंवा डाय" },
+        { label: "मशीन किंमत (Price)", val: "₹१,८५,०००/- पासून पुढे (मॉडेल व क्षमतेनुसार ₹२+ लाख)" },
         { label: "डिलिव्हरी व ट्रेनिंग", val: "संपूर्ण महाराष्ट्रात सुरक्षित ट्रान्सपोर्ट + व्हिडिओ डेमो" },
         { label: "वॉरंटी व सपोर्ट", val: "१ वर्षाची वॉरंटी + अखंड सर्व्हिस सपोर्ट" }
       ],
@@ -303,11 +311,11 @@ export const translations = {
         { title: "हाताचा घाम व अस्वच्छता", desc: "घामामुळे लाडू लवकर खराब होतात आणि ब्रँडेड विक्री करता येत नाही." }
       ],
       machinePoints: [
-        { title: "विनासायास सोपे काम", desc: "फक्त मिश्रण टाकायचे आणि मशीन सुरू करायची, कोणतीही शारीरिक दगदग नाही." },
+        { title: "विनासायास सोपे काम", desc: "फक्त तयार मिश्रणाचे गोळे, तुकडे किंवा मुटके टाकायचे आहेत आणि मशीन सुरू करायची आहे, कोणतीही शारीरिक दगदग नाही." },
         { title: "सुपरफास्ट वेग (१०००+ लाडू/तास)", desc: "काही तासांत हजारो लाडू तयार! कोणत्याही मोठ्या ऑर्डर वेळेवर पूर्ण करा." },
-        { title: "फक्त १ व्यक्ती पुरेसा (₹३०,०००+ बचत)", desc: "एकच व्यक्ती सर्व काम सांभाळू शकते, कामगारांचे पगार थेट तुमच्या खिशात." },
+        { title: "२ व्यक्ती १ युनिट सहज सांभाळू शकतात", desc: "२ व्यक्ती १ युनिट सहज सांभाळू शकतात (१ फीडिंग + १ ट्रे/पॅकिंग), कामगारांचे पगार थेट तुमच्या खिशात." },
         { title: "परिपूर्ण गोल व एकसारखे वजन", desc: "प्रत्येक लाडूचा आकार आणि वजन १००% एकसारखे निघते, आकर्षक पॅकिंग होते." },
-        { title: "१००% हायजिनिक SS 304 स्टील", desc: "हात न लावता स्वच्छ लाडू बनतात, जे तुम्ही सुपरमार्केटमध्येही विकू शकता." }
+        { title: "१००% हायजिनिक फूड ग्रेड मटेरियल", desc: "स्टेनलेस स्टील, ॲल्युमिनियम व पी.पी. फूड ग्रेड घटकांमुळे हात न लावता स्वच्छ लाडू बनतात." }
       ],
       bottomCallout: "💡 निष्कर्ष: मशीन लावल्यामुळे दरमहा ₹३५,०००+ ची थेट बचत होते, म्हणजेच २ ते ३ महिन्यांत मशीनचे पैसे वसूल!"
     },
@@ -339,8 +347,8 @@ export const translations = {
         },
         {
           step: "०२",
-          title: "मशीनमध्ये टाका",
-          desc: "मिश्रण हॉपरमध्ये टाका आणि स्पीड डायल चालू करा."
+          title: "हॉपरमध्ये टाका",
+          desc: "तयार मिश्रणाचे गोळे, तुकडे किंवा मुटके हॉपरमध्ये टाका आणि स्पीड रेगुलेटर चालू करा."
         },
         {
           step: "०३",
@@ -393,11 +401,15 @@ export const translations = {
       items: [
         {
           q: "ही मशीन घरगुती विजेवर चालते का?",
-          a: "होय, नक्कीच! SWARAJ लाडू मशीन सिंगल फेज (Single Phase 220V) घरगुती विजेवर चालते. थ्री-फेज कनेक्शनची अजिबात गरज नाही."
+          a: "होय, नक्कीच! SWARAJ लाडू मशीन सिंगल फेज (Single Phase 220V) घरगुती विजेवर चालते. थ्री-फेज कनेक्शनची अजिबात गरज नाही. दैनंदिन वीज वापर सुमारे ५ ते ६ युनिट प्रति दिवस असतो."
         },
         {
           q: "एकाच मशीनवर राजगिरा आणि मुरमुरा दोन्ही लाडू बनतात का?",
           a: "होय, ही ड्युअल-युज मशीन आहे. तुम्ही उपवासाचे राजगिरा लाडू आणि कुरकुरीत चिरमुरे (लाई) लाडू दोन्ही उत्तम दर्जाचे बनवू शकता."
+        },
+        {
+          q: "एकाच मशीनमध्ये वेगवेगळ्या आकाराचे (ग्रॅमचे) लाडू बनवता येतात का?",
+          a: "नाही, एका मशीनमध्ये एकच फिक्स साईज (जसे की ५ ग्रॅम) तयार होते. लाडूचा आकार किंवा वजन बदलायचे असल्यास त्यानुसार वेगळी मशीन किंवा डाय घ्यावी लागते."
         },
         {
           q: "मशीन चालवण्याचे प्रशिक्षण कसे मिळेल?",
@@ -474,7 +486,7 @@ export const translations = {
       trustBadge: "⭐ 100% Made in India • Direct Factory Supply",
       title: "Commercial Rajgira & Murmura",
       titleHighlight: "Laddu Making Machine",
-      subheadline: "Stop Rolling Laddus by Hand — Produce 1,000+ Laddus/Hr with Just 1 Operator!",
+      subheadline: "Stop Rolling Laddus by Hand — Produce 1,000+ Laddus/Hr with 2 Persons Managing 1 Unit!",
       description: "Tired of labor shortages and slow hand-rolling during peak festival seasons? Upgrade to SWARAJ commercial laddu machine to produce perfectly spherical, uniform laddus at 10x speed and add ₹35,000+ extra monthly profit directly to your pocket.",
       ctaWhatsapp: "WhatsApp Quote",
       ctaCall: "Call Factory",
@@ -483,30 +495,32 @@ export const translations = {
       stat1Label: "Laddus / Hour Speed",
       stat2Val: "80%",
       stat2Label: "Labor Cost Eliminated",
-      stat3Val: "SS 304",
-      stat3Label: "Food-Grade Stainless Steel",
+      stat3Val: "Food Grade",
+      stat3Label: "Certified Food Grade Materials",
       stat4Val: "220V",
       stat4Label: "Standard Home Electricity"
     },
     showcase: {
       badge: "Real Machine Photos & Live Video",
       title: "Inspect the Machine — Simple, Robust & Reliable!",
-      subtitle: "Heavy-duty chassis, food-grade SS 304 contact parts, and intuitive 1-switch control",
+      subtitle: "Heavy-duty chassis, food-grade contact materials, and intuitive 1-switch control",
       tabPhoto1: "Laddu Tray Model",
       tabPhoto2: "Front View",
       tabVideo: "Live Video in Action",
-      quickFeature1: "Produces Rajgira, Murmura (puffed rice), and Til laddus on 1 unit",
+      quickFeature1: "Produces Rajgira and Murmura (puffed rice) laddus on 1 unit",
       quickFeature2: "100% uniform spherical shape and identical weight consistency",
-      quickFeature3: "Runs on 220V domestic single-phase power (~₹10-₹15/day cost)",
+      quickFeature3: "Runs on 220V domestic single-phase power (5 to 6 units/day power consumption)",
       quickFeature4: "Anyone can operate comfortably with just 5 minutes of training",
       specsTitle: "Technical Specifications",
       specs: [
         { label: "Production Speed", val: "800 to 1,200+ laddus per hour" },
-        { label: "Supported Products", val: "Rajgira, Puffed Rice (Murmura), Til-Gul" },
+        { label: "Supported Products", val: "Rajgira and Puffed Rice (Murmura)" },
         { label: "Power Supply", val: "220V Single-Phase (Standard Domestic Plug)" },
-        { label: "Food Contact Parts", val: "100% Certified SS 304 Stainless Steel" },
-        { label: "Labor Required", val: "Only 1 Operator (Rotary speed regulator)" },
-        { label: "Daily Power Cost", val: "Just ₹8 - ₹12 per operating day" },
+        { label: "Food Contact Parts", val: "Stainless Steel, Aluminium & PP Food-Grade Materials" },
+        { label: "Labor Required", val: "2 Persons manage 1 unit smoothly (1 Feeding + 1 Tray/Packing)" },
+        { label: "Daily Power Cost", val: "5 to 6 units per operating day (220V Single-Phase)" },
+        { label: "Laddu Size / Grammage", val: "1 Fixed Size per Machine (e.g. 5g); changing size requires separate machine/die" },
+        { label: "Machine Price", val: "Starting at ₹1,85,000/- (Up to ₹2L+ based on model)" },
         { label: "Delivery & Training", val: "All-India Safe Transit + Video Demo Support" },
         { label: "Warranty & Support", val: "1-Year Comprehensive Warranty + Lifetime Support" }
       ],
@@ -528,11 +542,11 @@ export const translations = {
         { title: "Hygiene & Sweating Concerns", desc: "Direct hand contact affects shelf-life and makes retail packaging non-certifiable." }
       ],
       machinePoints: [
-        { title: "Zero Strain & Effortless Operation", desc: "Simply load warm mixture and press start — no physical exhaustion whatsoever." },
+        { title: "Zero Strain & Effortless Operation", desc: "Simply feed prepared mix chunks, balls, or lumps into hopper and switch on — zero manual effort." },
         { title: "Lightning Fast (1,000+ laddus/hr)", desc: "Turn out thousands of laddus in hours. Confidently accept large wholesale orders." },
-        { title: "Single Person Setup (Save ₹30,000+/mo)", desc: "1 helper handles the whole machine; pocket the entire labor savings directly." },
+        { title: "2 Persons Manage 1 Unit Smoothly", desc: "2 persons handle the complete unit (1 feeding + 1 packing), saving heavy labor overheads." },
         { title: "Perfect Sphere & Uniform Grammage", desc: "100% consistent spherical shape and precise weight for attractive brand packaging." },
-        { title: "100% Food-Grade SS 304 Hygiene", desc: "Touch-free rolling ensures prolonged shelf-life and supermarket acceptance." }
+        { title: "100% Food-Grade Hygienic Materials", desc: "Stainless steel, aluminium, and food-grade PP parts ensure touch-free, pristine laddu production." }
       ],
       bottomCallout: "💡 Commercial Impact: Saves ₹35,000+ in labor every single month, recovering your machine cost in just 60 to 90 days!"
     },
@@ -564,8 +578,8 @@ export const translations = {
         },
         {
           step: "02",
-          title: "Feed Into Machine",
-          desc: "Load into the hopper, adjust speed dial, and press START."
+          title: "Feed Into Hopper",
+          desc: "Feed prepared mix balls, chunks, or lumps into the hopper and switch on the speed regulator."
         },
         {
           step: "03",
@@ -618,11 +632,15 @@ export const translations = {
       items: [
         {
           q: "Does this machine run on normal household electricity?",
-          a: "Yes! SWARAJ laddu machine runs on standard single-phase 220V domestic wall power. You do not need any 3-phase industrial power line."
+          a: "Yes! SWARAJ laddu machine runs on standard single-phase 220V domestic wall power. You do not need any 3-phase industrial power line. Daily electricity consumption is approximately 5 to 6 units per day."
         },
         {
           q: "Can I produce both Rajgira and Murmura laddus on the same machine?",
           a: "Yes, it is a dual-use machine. You can make fasting-special Rajgira laddus as well as crispy sweet Murmura (puffed rice) laddus seamlessly."
+        },
+        {
+          q: "Can a single machine produce multiple laddu sizes (grammages)?",
+          a: "No, each machine is engineered for 1 fixed size (such as 5 grams). To produce a different laddu size or weight, a separate machine or dedicated die is required."
         },
         {
           q: "How will we receive operating training?",

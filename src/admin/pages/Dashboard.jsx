@@ -324,7 +324,7 @@ export default function Dashboard() {
                   <div className="bg-gradient-to-r from-sky-500 to-sky-600 h-2 rounded-full" style={{ width: '42.6%' }}></div>
                 </div>
                 <div className="flex items-center justify-between text-[11px] text-slate-500 mt-2 font-medium">
-                  <span>{adminLang === 'mr' ? 'क्षमता: ८०० - १५०० नग/तास • SS 304 ग्रेड' : 'Capacity: 800 - 1,500 Pcs/hr • SS 304 Food Grade'}</span>
+                  <span>{adminLang === 'mr' ? 'क्षमता: ८०० - १५०० नग/तास • फूड ग्रेड मटेरियल' : 'Capacity: 800 - 1,500 Pcs/hr • Food Grade Material'}</span>
                   <span className="text-emerald-600 font-semibold">₹18.4L Pipeline Generated</span>
                 </div>
               </div>

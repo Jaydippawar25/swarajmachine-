@@ -247,10 +247,10 @@ export default function RoiCalculator({ t, lang, onOpenQuote, calculatorSettings
                     </div>
                     <p className="text-xs text-slate-600 font-medium mt-0.5 leading-relaxed">
                       {lang === 'mr' 
-                        ? `हाताने एवढे लाडू वळण्यासाठी ${manualWorkers} कारागीर लागतात. मशीनवर फक्त १ व्यक्ती पुरेशी आहे.`
+                        ? `हाताने एवढे लाडू वळण्यासाठी ${manualWorkers} कारागीर लागतात. मशीनवर २ व्यक्ती १ युनिट सहज सांभाळू शकतात (१ फीडिंग + १ ट्रे/पॅकिंग).`
                         : lang === 'hi'
-                        ? `हाथ से इतने लड्डू बनाने के लिए ${manualWorkers} कारीगर चाहिए, मशीन पर सिर्फ 1 व्यक्ति काफी है।`
-                        : `Rolling these laddus manually requires ${manualWorkers} workers. With the machine, just 1 person is needed.`}
+                        ? `हाथ से इतने लड्डू बनाने के लिए ${manualWorkers} कारीगर चाहिए, मशीन पर 2 व्यक्ति 1 यूनिट आसानी से संभाल सकते हैं (1 फीडिंग + 1 ट्रे/पैकिंग)।`
+                        : `Rolling these laddus manually requires ${manualWorkers} workers. With the machine, 2 persons manage the unit smoothly (1 feeding + 1 tray/packaging).`}
                     </p>
                     <div className="mt-2.5 text-xs sm:text-sm font-bold text-slate-800 flex items-center justify-between border-t border-slate-100 pt-2">
                       <span>{lang === 'mr' ? 'थेट वाचणारा कामगार पगार:' : lang === 'hi' ? 'सीधी लेबर वेतन बचत:' : 'Direct Labor Wages Saved:'}</span>
@@ -310,7 +310,7 @@ export default function RoiCalculator({ t, lang, onOpenQuote, calculatorSettings
                     <div className="flex items-center gap-2">
                       <span className="w-5 h-5 rounded-full bg-slate-600 text-white flex items-center justify-center text-[11px] font-black">-</span>
                       <div>
-                        <span className="font-semibold text-slate-700">{lang === 'mr' ? 'ऑपरेटर मानधन / पगार (१ व्यक्ती)' : lang === 'hi' ? 'ऑपरेटर वेतन (1 व्यक्ति)' : 'Operator Salary (1 Person)'}</span>
+                        <span className="font-semibold text-slate-700">{lang === 'mr' ? 'ऑपरेटर मानधन / पगार (२ व्यक्ती)' : lang === 'hi' ? 'ऑपरेटर वेतन (2 व्यक्ति)' : 'Operator Salary (2 Persons)'}</span>
                         <span className="block text-[10px] text-slate-400 font-medium">{lang === 'mr' ? 'दररोज अवघे ३-४ तास काम' : lang === 'hi' ? 'प्रतिदिन मात्र 3-4 घंटे कार्य' : 'Only 3-4 hrs daily'}</span>
                       </div>
                     </div>
@@ -325,7 +325,7 @@ export default function RoiCalculator({ t, lang, onOpenQuote, calculatorSettings
                       <span className="w-5 h-5 rounded-full bg-slate-600 text-white flex items-center justify-center text-[11px] font-black">-</span>
                       <div>
                         <span className="font-semibold text-slate-700">{lang === 'mr' ? 'घरगुती वीज व पॅकिंग खर्च' : lang === 'hi' ? 'घरेलू बिजली और पैकिंग खर्च' : 'Domestic Power & Packaging Cost'}</span>
-                        <span className="block text-[10px] text-slate-400 font-medium">{lang === 'mr' ? '२२०V वीज ₹८/दिवस + प्लास्टिक पॅकिंग' : lang === 'hi' ? '220V बिजली ₹8/दिन + पैकिंग खर्च' : '220V power ₹8/day + packing'}</span>
+                        <span className="block text-[10px] text-slate-400 font-medium">{lang === 'mr' ? '२२०V वीज (५-६ युनिट/दिवस) + प्लास्टिक पॅकिंग' : lang === 'hi' ? '220V बिजली (5-6 यूनिट/दिन) + पैकिंग खर्च' : '220V power (5-6 units/day) + packing'}</span>
                       </div>
                     </div>
                     <span className="font-bold text-slate-700">

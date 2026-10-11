@@ -159,8 +159,8 @@ export default function MachineOverview({ t, lang, onOpenQuote }) {
                   <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div>
-                  <div className="text-xs sm:text-base font-black text-slate-900 leading-tight">{lang === 'hi' ? 'SS 304 स्टील' : 'SS 304 Steel'}</div>
-                  <div className="text-[10px] sm:text-xs font-semibold text-slate-500">{lang === 'hi' ? '100% फूड हाइजेनिक' : '100% Food Hygienic'}</div>
+                  <div className="text-xs sm:text-base font-black text-slate-900 leading-tight">{lang === 'mr' ? 'फूड ग्रेड मटेरियल' : lang === 'hi' ? 'फूड ग्रेड मटेरियल' : 'Food Grade Material'}</div>
+                  <div className="text-[10px] sm:text-xs font-semibold text-slate-500">{lang === 'mr' ? '१००% सुरक्षित व स्वच्छ' : lang === 'hi' ? '100% फूड हाइजेनिक' : '100% Food Hygienic'}</div>
                 </div>
               </div>
 

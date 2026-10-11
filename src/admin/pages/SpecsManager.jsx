@@ -99,7 +99,7 @@ export default function SpecsManager() {
           </div>
           <div>
             <h3 className="font-bold text-slate-900 text-sm">{at.pricingDisplay || 'Pricing Display'}</h3>
-            <p className="text-xs text-slate-500">{adminLang === 'mr' ? 'कमर्शियल स्टँडर्ड मॉडेल (SS 304 सिंगल फेज)' : adminLang === 'hi' ? 'कमर्शियल स्टैंडर्ड मॉडल (SS 304 सिंगल फेज)' : 'Commercial Standard Model (SS 304 Single Phase)'}</p>
+            <p className="text-xs text-slate-500">{adminLang === 'mr' ? 'कमर्शियल स्टँडर्ड मॉडेल (फूड ग्रेड मटेरियल, सिंगल फेज)' : adminLang === 'hi' ? 'कमर्शियल स्टैंडर्ड मॉडल (फूड-ग्रेड मटेरियल, सिंगल फेज)' : 'Commercial Standard Model (Food-Grade Materials, Single Phase)'}</p>
           </div>
         </div>
 
