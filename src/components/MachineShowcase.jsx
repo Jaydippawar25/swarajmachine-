@@ -178,7 +178,7 @@ export default function MachineShowcase({ t, lang, onOpenQuote, specs, settings 
                 <Sparkles className="w-4 h-4 text-amber-600" />
               </div>
               <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 border border-slate-200/90 px-2.5 py-0.5 rounded-md">
-                {lang === 'mr' ? 'सिंगल फेज' : lang === 'hi' ? 'सिंगल फेज' : 'Single Phase'}
+                {lang === 'mr' ? '२२०V वीज' : lang === 'hi' ? '220V बिजली' : '220V Power'}
               </span>
             </div>
 
@@ -364,7 +364,7 @@ export default function MachineShowcase({ t, lang, onOpenQuote, specs, settings 
 
               {/* Specs Table List */}
               <div className="divide-y divide-slate-100">
-                {((specs?.items && specs.items.length > 0) ? specs.items : data.specs).map((item, idx) => (
+                {(data?.specs || specs?.items || []).map((item, idx) => (
                   <div key={item.id || idx} className="py-2 sm:py-2.5 flex items-center justify-between gap-3 text-xs sm:text-sm">
                     <span className="text-slate-600 font-semibold">
                       {item.label}

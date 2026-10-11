@@ -35,8 +35,8 @@ export const translations = {
       stat2Label: "लेबर खर्च में सीधी बचत",
       stat3Val: "फूड-ग्रेड",
       stat3Label: "फूड-ग्रेड मटेरियल का उपयोग",
-      stat4Val: "220V",
-      stat4Label: "घरेलू 220V बिजली पर चालू"
+      stat4Val: "5-6 यूनिट",
+      stat4Label: "दैनिक बिजली खर्च (220V सिंगल फेज)"
     },
     showcase: {
       badge: "मशीन की वास्तविक तस्वीरें और वीडियो",
@@ -266,8 +266,8 @@ export const translations = {
       stat2Label: "कामगार खर्चात थेट बचत",
       stat3Val: "फूड-ग्रेड",
       stat3Label: "फूड ग्रेड मटेरियल वापरलेले आहे",
-      stat4Val: "220V",
-      stat4Label: "घरगुती सिंगल फेज वीज"
+      stat4Val: "५-६ युनिट",
+      stat4Label: "दैनंदिन वीज वापर (२२०V सिंगल फेज)"
     },
     showcase: {
       badge: "मशीनचे प्रत्यक्ष फोटो व व्हिडिओ",
@@ -497,8 +497,8 @@ export const translations = {
       stat2Label: "Labor Cost Eliminated",
       stat3Val: "Food Grade",
       stat3Label: "Certified Food Grade Materials",
-      stat4Val: "220V",
-      stat4Label: "Standard Home Electricity"
+      stat4Val: "5-6 Units",
+      stat4Label: "Daily Power Consumption (220V Single-Phase)"
     },
     showcase: {
       badge: "Real Machine Photos & Live Video",

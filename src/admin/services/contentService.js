@@ -440,19 +440,25 @@ export const contentService = {
 
     const stored = localStorage.getItem(LOCAL_SPECS_KEY);
     if (stored) {
-      try { return { ...defaultSpecs, ...JSON.parse(stored) }; } catch (e) {}
+      try {
+        const parsed = JSON.parse(stored);
+        if (parsed?.isCustom) {
+          return { ...defaultSpecs, ...parsed };
+        }
+      } catch (e) {}
     }
     return defaultSpecs;
   },
 
   async saveSpecs(specsData) {
+    const payload = { ...specsData, isCustom: true };
     if (isFirebaseConfigured && db) {
       try {
-        await setDoc(doc(db, 'settings', 'specs'), specsData, { merge: true });
+        await setDoc(doc(db, 'settings', 'specs'), payload, { merge: true });
       } catch (e) {}
     }
-    localStorage.setItem(LOCAL_SPECS_KEY, JSON.stringify(specsData));
-    notifyUpdate('specs', specsData);
+    localStorage.setItem(LOCAL_SPECS_KEY, JSON.stringify(payload));
+    notifyUpdate('specs', payload);
     return true;
   },
 
