@@ -86,7 +86,7 @@ export const translations = {
         { title: "परफेक्ट गोल व सटीक एकसमान वजन", desc: "हर एक लड्डू का गोल शेप और वजन 100% एक जैसा निकलता है, आकर्षक पैकिंग बनती है।" },
         { title: "100% हाइजीनिक फूड-ग्रेड मटेरियल", desc: "स्टेनलेस स्टील, एल्युमिनियम और पी.पी. फूड-ग्रेड पार्ट्स से बिना हाथ लगाए साफ-सुथरे लड्डू बनते हैं।" }
       ],
-      bottomCallout: "💡 परिणाम: मशीन लगाने से हर महीने ₹35,000+ की सीधी बचत होती है, यानी 2-3 महीने में मशीन की पूरी लागत वसूल!"
+      bottomCallout: "💡 परिणाम: मशीन की कीमत ₹1,85,000/- (मॉडल अनुसार ₹2+ लाख) होने पर भी, हर महीने ₹35,000+ लेबर बचत से मात्र 4 से 5 महीने में पूरी लागत 100% वसूल!"
     },
     calculator: {
       badge: "मुनाफे का गणित (ROI & Profit Calculator)",
@@ -101,7 +101,7 @@ export const translations = {
       rawCostTotal: "कच्चा माल लागत (गुड़ और सामग्री)",
       operatingTotal: "ऑपरेटर एवं बिजली खर्च",
       netProfit: "हाथ में शुद्ध मासिक मुनाफा (Net Profit)",
-      paybackMsg: "🏆 पेबैक: मात्र 2 से 3 महीने में मशीन की पूरी लागत 100% वसूल!",
+      paybackMsg: "🏆 पेबैक: ₹1,85,000/- से ₹2+ लाख का निवेश हर महीने के मुनाफे से मात्र 4 से 5 महीने में 100% वसूल!",
       ctaBtn: "यह मुनाफा कमाने के लिए कोटेशन मंगाएं"
     },
     process: {
@@ -317,7 +317,7 @@ export const translations = {
         { title: "परिपूर्ण गोल व एकसारखे वजन", desc: "प्रत्येक लाडूचा आकार आणि वजन १००% एकसारखे निघते, आकर्षक पॅकिंग होते." },
         { title: "१००% हायजिनिक फूड ग्रेड मटेरियल", desc: "स्टेनलेस स्टील, ॲल्युमिनियम व पी.पी. फूड ग्रेड घटकांमुळे हात न लावता स्वच्छ लाडू बनतात." }
       ],
-      bottomCallout: "💡 निष्कर्ष: मशीन लावल्यामुळे दरमहा ₹३५,०००+ ची थेट बचत होते, म्हणजेच २ ते ३ महिन्यांत मशीनचे पैसे वसूल!"
+      bottomCallout: "💡 निष्कर्ष: मशीनची किंमत ₹१,८५,०००/- (मॉडेलनुसार ₹२+ लाख) असून, दरमहा ₹३५,०००+ कामगार बचतीमुळे अवघ्या ४ ते ५ महिन्यांत मशीनची पूर्ण किंमत १००% वसूल!"
     },
     calculator: {
       badge: "नफ्याचे गणित (Profit Calculator)",
@@ -332,7 +332,7 @@ export const translations = {
       rawCostTotal: "कच्चा माल खर्च (गूळ व धान्य)",
       operatingTotal: "ऑपरेटर व वीज खर्च",
       netProfit: "मासिक निव्वळ नफा (Net In-Hand Profit)",
-      paybackMsg: "🏆 पेबॅक: फक्त २ ते ३ महिन्यांत मशीनची किंमत १००% वसूल!",
+      paybackMsg: "🏆 पेबॅक: ₹१,८५,०००/- ते ₹२+ लाखांची गुंतवणूक दरमहाच्या भरघोस नफ्यामुळे अवघ्या ४ ते ५ महिन्यांत १००% वसूल!",
       ctaBtn: "हा नफा मिळवण्यासाठी कोटेशन मागवा"
     },
     process: {
@@ -548,7 +548,7 @@ export const translations = {
         { title: "Perfect Sphere & Uniform Grammage", desc: "100% consistent spherical shape and precise weight for attractive brand packaging." },
         { title: "100% Food-Grade Hygienic Materials", desc: "Stainless steel, aluminium, and food-grade PP parts ensure touch-free, pristine laddu production." }
       ],
-      bottomCallout: "💡 Commercial Impact: Saves ₹35,000+ in labor every single month, recovering your machine cost in just 60 to 90 days!"
+      bottomCallout: "💡 Commercial Impact: Machine starting at ₹1,85,000/- (up to ₹2L+ based on model); monthly labor savings of ₹35,000+ recovers 100% of machine cost in just 4 to 5 months!"
     },
     calculator: {
       badge: "Accurate Business Economics",
@@ -563,7 +563,7 @@ export const translations = {
       rawCostTotal: "Raw Material Expenses",
       operatingTotal: "Operator Wages & Power Cost",
       netProfit: "Net Monthly In-Hand Cash Profit",
-      paybackMsg: "🏆 Payback: 100% machine investment recovered in just 2-3 months!",
+      paybackMsg: "🏆 Payback: 100% machine investment (₹1.85L - ₹2L+) fully recovered within 4 to 5 months!",
       ctaBtn: "Get Official Quote to Start Earning"
     },
     process: {
