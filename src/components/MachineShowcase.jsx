@@ -15,7 +15,7 @@ import {
 import WhatsAppIcon from './WhatsAppIcon';
 import machineTrayImg from '../assets/machine-laddu-tray.jpg';
 import machineMainImg from '../assets/machine-main.jpg';
-import machineVideo from '../assets/hero-bg.mp4';
+import machineVideo from '../assets/swaraj-machine-video-2026.mp4';
 
 function AnimatedCounter({ target, suffix = '', duration = 1200 }) {
   const [val, setVal] = useState(0);
@@ -293,6 +293,7 @@ export default function MachineShowcase({ t, lang, onOpenQuote, specs, settings 
 
                 {activeMedia === 'video' && (
                   <video
+                    key={machineVideo}
                     autoPlay
                     loop
                     controls
@@ -300,7 +301,7 @@ export default function MachineShowcase({ t, lang, onOpenQuote, specs, settings 
                     className="w-full h-full object-cover rounded-2xl"
                   >
                     <source src={machineVideo} type="video/mp4" />
-                    <source src="/videos/hero-bg.mp4" type="video/mp4" />
+                    <source src="/videos/swaraj-machine-video-2026.mp4?v=2026" type="video/mp4" />
                   </video>
                 )}
 

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Volume2, VolumeX, ChevronDown, Award } from 'lucide-react';
-import heroBgVideo from '../assets/hero-bg.mp4';
+import heroBgVideo from '../assets/swaraj-machine-video-2026.mp4';
 
 export default function Hero({ t, lang }) {
   const [isMuted, setIsMuted] = useState(true);
@@ -18,6 +18,7 @@ export default function Hero({ t, lang }) {
       {/* Background Video Player - 100% Crisp & Unobstructed */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <video
+          key={heroBgVideo}
           ref={videoRef}
           autoPlay
           loop
@@ -27,7 +28,7 @@ export default function Hero({ t, lang }) {
           className="w-full h-full object-cover object-center"
         >
           <source src={heroBgVideo} type="video/mp4" />
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+          <source src="/videos/swaraj-machine-video-2026.mp4?v=2026" type="video/mp4" />
         </video>
       </div>
 

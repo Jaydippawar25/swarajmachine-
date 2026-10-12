@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Calculator, ShieldCheck, Zap, Award, Sparkles, Play, Image as ImageIcon } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
 import machineImg from '../assets/machine-main.jpg';
-import heroBgVideo from '../assets/hero-bg.mp4';
+import heroBgVideo from '../assets/swaraj-machine-video-2026.mp4';
 
 export default function MachineOverview({ t, lang, onOpenQuote }) {
   const [activeMedia, setActiveMedia] = useState('photo');
@@ -129,6 +129,7 @@ export default function MachineOverview({ t, lang, onOpenQuote }) {
                 ) : (
                   <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 flex items-center justify-center">
                     <video
+                      key={heroBgVideo}
                       autoPlay
                       loop
                       controls
@@ -136,7 +137,7 @@ export default function MachineOverview({ t, lang, onOpenQuote }) {
                       className="w-full h-full object-cover rounded-2xl"
                     >
                       <source src={heroBgVideo} type="video/mp4" />
-                      <source src="/videos/hero-bg.mp4" type="video/mp4" />
+                      <source src="/videos/swaraj-machine-video-2026.mp4?v=2026" type="video/mp4" />
                     </video>
                   </div>
                 )}

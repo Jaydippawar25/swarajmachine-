@@ -12,7 +12,7 @@ const INITIAL_MEDIA = [
   { id: 'm-2', name: 'machine-laddu-tray.jpg', title: 'Laddu Tray Model View', type: 'image', size: '385 KB', url: machineTray, assignedTo: 'Showcase Tab 1' },
   { id: 'm-3', name: 'comparison-poster.jpg', title: 'Commercial Comparison Poster', type: 'image', size: '362 KB', url: comparisonPoster, assignedTo: 'Brochure Gallery' },
   { id: 'm-4', name: 'features-poster.jpg', title: 'Technical Features Infographic', type: 'image', size: '450 KB', url: featuresPoster, assignedTo: 'Brochure Gallery' },
-  { id: 'm-5', name: 'hero-bg.mp4', title: 'Live Working Machine Video', type: 'video', size: '4.9 MB', url: '', assignedTo: 'Hero Video & Showcase Tab 3' }
+  { id: 'm-5', name: 'swaraj-machine-video-2026.mp4', title: 'Live Working Machine Video', type: 'video', size: '6.1 MB', url: '', assignedTo: 'Hero Video & Showcase Tab 3' }
 ];
 
 export default function MediaLibrary() {
