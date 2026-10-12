@@ -131,6 +131,7 @@ export default function MachineOverview({ t, lang, onOpenQuote }) {
                     <video
                       key={heroBgVideo}
                       autoPlay
+                      muted
                       loop
                       controls
                       playsInline

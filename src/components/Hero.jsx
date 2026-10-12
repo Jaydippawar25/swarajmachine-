@@ -1,20 +1,59 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Volume2, VolumeX, ChevronDown, Award } from 'lucide-react';
 import heroBgVideo from '../assets/swaraj-machine-video-2026.mp4';
 
 export default function Hero({ t, lang }) {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
+  const sectionRef = useRef(null);
 
   const toggleSound = () => {
     if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
+      const nextMutedState = !isMuted;
+      videoRef.current.muted = nextMutedState;
+      setIsMuted(nextMutedState);
     }
   };
 
+  // Automatically mute audio as soon as the user scrolls the website
+  useEffect(() => {
+    const handleScroll = () => {
+      // If user has scrolled down the website (e.g. beyond 40px), auto-mute the video
+      if (window.scrollY > 40) {
+        if (videoRef.current && !videoRef.current.muted) {
+          videoRef.current.muted = true;
+          setIsMuted(true);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // IntersectionObserver as fallback: if hero is less than 30% visible, mute the video
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || entry.intersectionRatio < 0.3) {
+          if (videoRef.current && !videoRef.current.muted) {
+            videoRef.current.muted = true;
+            setIsMuted(true);
+          }
+        }
+      },
+      { threshold: [0, 0.3] }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <section className="relative min-h-[70vh] sm:min-h-[82vh] lg:min-h-[86vh] flex items-center justify-center overflow-hidden bg-slate-950">
+    <section ref={sectionRef} className="relative min-h-[70vh] sm:min-h-[82vh] lg:min-h-[86vh] flex items-center justify-center overflow-hidden bg-slate-950">
       {/* Background Video Player - 100% Crisp & Unobstructed */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <video

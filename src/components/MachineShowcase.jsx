@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Sparkles, 
   CheckCircle2, 
@@ -47,7 +47,19 @@ function AnimatedCounter({ target, suffix = '', duration = 1200 }) {
 
 export default function MachineShowcase({ t, lang, onOpenQuote, specs, settings }) {
   const [activeMedia, setActiveMedia] = useState('tray'); // 'tray', 'front', 'video'
+  const showcaseVideoRef = useRef(null);
   const data = t.showcase;
+
+  // Auto-mute showcase video on page scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (showcaseVideoRef.current && !showcaseVideoRef.current.muted) {
+        showcaseVideoRef.current.muted = true;
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const whatsappNumber = settings?.whatsappNumber || t.nav.whatsappNumber;
   const phone = settings?.phone || t.nav.phone;
@@ -293,8 +305,10 @@ export default function MachineShowcase({ t, lang, onOpenQuote, specs, settings 
 
                 {activeMedia === 'video' && (
                   <video
+                    ref={showcaseVideoRef}
                     key={machineVideo}
                     autoPlay
+                    muted
                     loop
                     controls
                     playsInline
